@@ -67,4 +67,12 @@ public class User {
         return aux;
     }
     
+    //metodos
+    public void verHistoricoApostas(){
+        for(Aposta a : this.historicoApostas)
+            System.out.println("Aposta: "+a.getIdAposta()+ " -> Valor Apostado: "+a.getValorApostado());
+    }
+    
+    
+    
 }
