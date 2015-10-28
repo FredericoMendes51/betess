@@ -5,140 +5,86 @@
  */
 package betess;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
- * @author fredericomendes
+ * @author misterfour
  */
-class Jogo {
-    private int idJogo;
-    private String equipa1;
-    private String equipa2;
-    private String resultado;
-    private float oddUm;
-    private float oddDois;
-    private float oddX;
+public class Admin {
+    private int idAdmin;
+    private String username;
+    private String password;
+    private boolean log;
     
-    
-    public Jogo(){
-        this.idJogo=0;
-        this.equipa1="";
-        this.equipa2="";
-        this.resultado="";
-        this.oddUm=0;
-        this.oddDois=0;
-        this.oddX=0;
-    }
-
-    public Jogo(int idJogo, String equipa1, String equipa2, String resultado, float oddUm, float oddDois, float oddX) {
-        this.idJogo = idJogo;
-        this.equipa1 = equipa1;
-        this.equipa2 = equipa2;
-        this.resultado = resultado;
-        this.oddUm = oddUm;
-        this.oddDois = oddDois;
-        this.oddX = oddX;
+    public Admin(String idAdmin, String username, String password, Boolean log){
+        this.idAdmin = idAdmin;
+        this.username = username;
+        this.password = password;
+        this.log=log;
     }
     
-    public Jogo(Jogo j){
-        this.idJogo=j.getIdJogo();
-        this.equipa1=j.getEquipa1();
-        this.equipa2=j.getEquipa2();
-        this.resultado=j.getResultado();
-        this.oddUm=j.getOddUm();
-        this.oddDois=j.getOddDois();
-        this.oddX=j.getOddX();
-    }
-
-    public int getIdJogo() {
-        return idJogo;
-    }
-
-    public String getEquipa1() {
-        return equipa1;
-    }
-
-    public String getEquipa2() {
-        return equipa2;
-    }
-
-    public String getResultado() {
-        return resultado;
-    }
-
-    public float getOddUm() {
-        return oddUm;
-    }
-
-    public float getOddDois() {
-        return oddDois;
-    }
-
-    public float getOddX() {
-        return oddX;
-    }
-
-    public void setIdJogo(int idJogo) {
-        this.idJogo = idJogo;
-    }
-
-    public void setEquipa1(String equipa1) {
-        this.equipa1 = equipa1;
-    }
-
-    public void setEquipa2(String equipa2) {
-        this.equipa2 = equipa2;
-    }
-
-    public void setResultado(String resultado) {
-        this.resultado = resultado;
-    }
-
-    public void setOddUm(float oddUm) {
-        this.oddUm = oddUm;
-    }
-
-    public void setOddDois(float oddDois) {
-        this.oddDois = oddDois;
-    }
-
-    public void setOddX(float oddX) {
-        this.oddX = oddX;
+    public Admin(Admin a){
+        this.idAdmin = a.getIdAdmin();
+        this.username = a.getUsername();
+        this.password = a.getPassword();
+        this.log = a.getLog();
     }
     
+    //get's
+    public int getIdAdmin(){
+        return this.idAdmin;
+    }
     
+    public String getUsername(){
+        return this.username;
+    }
+    
+    public String getPassword(){
+        return this.password;
+    }
+   
+    public Boolean getLog(){
+        return this.log;
+    }
+    
+    //set's
+    public void setIdAdmin(int idAdmin) {
+        this.idAdmin = idAdmin;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setLog(boolean log) {
+        this.log = log;
+    }
+
+    @Override
+    public Admin clone() {
+        return new Admin(this);
+    }
+    
+    public boolean equals(Admin a) {
+        if (this == a) {
+            return true;
+        }
+        if ((a == null) || (this.getClass() != a.getClass())) {
+            return false;
+        }
+        Admin e = (Admin) a;
+        return this.idAdmin==(e.getIdAdmin());
+    }
     
     @Override
     public String toString() {
-        StringBuilder s = new StringBuilder();
-        s.append("Jogo : ");
-        s.append(this.idJogo).append("em que se defrontam a equipa ");
-        s.append(this.equipa1).append("e a equipa ");
-        s.append(this.equipa2).append(".\n");
-        s.append("Neste momento o resultado é:").append(this.resultado);
-        s.append("\n");
-        s.append("Tem como odd para a vitória da equipa da casa: ").append(this.oddUm);
-        s.append(" para o empate: ").append(this.oddX);
-        s.append(" e para a vitória da equipa visitante: ").append(this.oddDois);
-        s.append("\n");
-        return s.toString();
+        return "Admin:" + "idAdmin=" + idAdmin + ", username=" + username + '.';
     }
-    
-    
-    public Jogo clone() {
-        return new Jogo(this);
-    } 
-    
-    public boolean equals(Jogo j) {
-        if (this == j) {
-            return true;
-        }
-        if ((j == null) || (this.getClass() != j.getClass())) {
-            return false;
-        }
-        Jogo e = (Jogo) j;
-        return this.idJogo==(e.getIdJogo());
-    }
-    
-    
-    
+
 }
