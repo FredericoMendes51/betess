@@ -253,6 +253,16 @@ public class CasaApostas {
         return ret;
     }
     
+    //metodo para fazer mudar a password
+    public void alterarPassword(String email, String pass){
+        for(User u : this.users.values()){
+            if(u.getEmail().equals(email)){
+                u.alterarPassword(pass);
+            }
+        }
+            
+    }
+    
     public CasaApostas clone() {
         return new CasaApostas(this);
     }
