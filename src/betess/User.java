@@ -14,13 +14,15 @@ import java.util.List;
  */
 public class User {
     private String email;
+    private String password;
     private String nome;
     private float saldo;
     List<Aposta> historicoApostas;
     List<Aposta> apostasAtivas;
     
-    public User (String email, String nome, float saldo){
+    public User (String email, String pass, String nome, float saldo){
         this.email = email;
+        this.password = pass;
         this.nome = nome;
         this.saldo = saldo;
         this.historicoApostas = new ArrayList<>();
@@ -29,6 +31,7 @@ public class User {
     
     public User (User u){
         this.email = u.getEmail();
+        this.password = u.getPassword();
         this.nome = u.getNome();
         this.saldo = u.getSaldo();
         for(Aposta a : u.getHistoricoApostas()){
@@ -41,6 +44,10 @@ public class User {
     
     public String getEmail(){
         return this.email;
+    }
+    
+    public String getPassword(){
+        return this.password;
     }
     
     public String getNome(){
