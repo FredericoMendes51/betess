@@ -121,12 +121,6 @@ public class User {
             System.out.println("Aposta: "+a.getIdAposta()+ " -> Valor Apostado: "+a.getValorApostado());
     }
     
-    //ver todos os jogos a decorrer para apostar
-    public void verJogosDecorrer(List<Jogo> listaJogos){
-        for(Jogo j : listaJogos){
-            System.out.println(j.getIdJogo()+" : "+j.getEquipa1()+"-"+j.getEquipa2()+" : "+j.getOddUm()+"-"+j.getOddX()+"-"+j.getOddUm());
-        }
-    }
     
     //metodo para depositar dinheiro
     public void depositarBetCoins(float money){

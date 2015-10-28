@@ -5,7 +5,9 @@
  */
 package betess;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -168,6 +170,17 @@ public class CasaApostas {
         }
         
         return aposta;
+    }
+    
+    //ver todos os jogos a decorrer para apostar
+    public List<Jogo> verJogosDecorrer(){
+        List<Jogo> auxJogo = new ArrayList<>();
+        for(Jogo j : this.jogos.values()){
+            if(j.getAcabou() == false)
+                auxJogo.add(j);
+        }
+        
+        return auxJogo;
     }
     
     public CasaApostas clone() {
