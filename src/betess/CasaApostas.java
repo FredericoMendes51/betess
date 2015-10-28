@@ -59,7 +59,7 @@ public class CasaApostas {
         this.apostas = ca.getApostas();
         this.users = ca.getUsers();
         this.admins = ca.getAdmins();
-        this.jogos = ca.getUsers();
+        this.jogos = ca.getJogos();
     }
     
     public int getIdApostas(){
@@ -90,15 +90,37 @@ public class CasaApostas {
         return aux;
     }
     
-    public Map<Integer, User> getJogos(){
-        Map<Integer, User> aux = new HashMap<>();
+    public Map<Integer, Jogo> getJogos(){
+        Map<Integer, Jogo> aux = new HashMap<>();
         for(Jogo j : this.jogos.values()){
             aux.put(j.getIdJogo(), j.clone());
         }
         return aux;
     }
     
+    public void setApostas(Map<Integer, Aposta> apostaAux){
+        this.apostas = new HashMap<>();
+        for(Aposta a : apostaAux.values())
+            this.apostas.put(a.getIdAposta(), a.clone());
+    }
     
+    public void setUsers(Map<String, User> userAux){
+        this.users = new HashMap<>();
+        for(User u : userAux.values())
+            this.users.put(u.getEmail(), u.clone());
+    }
+    
+    public void setAdmins(Map<Integer, Admin> adminAux){
+        this.admins = new HashMap<>();
+        for(Admin a : adminAux.values())
+            this.admins.put(a.getIdAdmins(), a.clone());
+    }
+    
+    public void setJogos(Map<Integer, Jogo> jogoAux){
+        this.jogos = new HashMap<>();
+        for(Jogo a : jogoAux.values())
+            this.jogos.put(a.getIdJogo(), a.clone());
+    }
     
     
     
