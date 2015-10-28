@@ -36,12 +36,8 @@ public class User {
         this.password = u.getPassword();
         this.nome = u.getNome();
         this.saldo = u.getSaldo();
-        for(Aposta a : u.getHistoricoApostas()){
-            this.historicoApostas.add(a);
-        }
-        for(Aposta a : u.getApostasAtivas()){
-            this.historicoApostas.add(a);
-        }
+        this.historicoApostas = u.getHistoricoApostas();
+        this.apostasAtivas = u.getApostasAtivas();
         this.log = u.getLog();
     }
     
@@ -72,6 +68,14 @@ public class User {
         
         return aux;
     }
+    
+    public List<Aposta> getApostasAtivas(){
+        List<Aposta> aux = new ArrayList<>();
+        for(Aposta a : this.apostasAtivas)
+            aux.add(a);
+        
+        return aux;
+    }
 
     public void setEmail(String email) {
         this.email = email;
@@ -98,14 +102,6 @@ public class User {
     }
     
     
-    
-    public List<Aposta> getApostasAtivas(){
-        List<Aposta> aux = new ArrayList<>();
-        for(Aposta a : this.apostasAtivas)
-            aux.add(a);
-        
-        return aux;
-    }
     
     public void setSaldo(float saldo){
         this.saldo = saldo;
