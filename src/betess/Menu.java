@@ -6,6 +6,8 @@
 package betess;
 
 import java.io.IOException;
+import static java.util.Collections.list;
+import java.util.List;
 
 /**
  *
@@ -68,9 +70,12 @@ public class Menu {
                 limparEcra(3);
                 print_linha("Introduza o seu email");
                 String email = this.input.lerString();
+                
                 print_linha("Introduza a sua password");
                 String pass = this.input.lerString();
-                if(ca.aut_user(String email,String pass)){
+                
+                
+                if(ca.aut_user( email, pass)){
                     menu_to_user(email);
                 }
                 else{
@@ -83,7 +88,7 @@ public class Menu {
                 String user = this.input.lerString();
                 print_linha("Introduza a sua password");
                 String pass2 = this.input.lerString();
-                if(ca.aut_admin(String user,String pass2)){
+                if(ca.aut_admin( user, pass2)){
                 menu_to_admin();
             }
                 else{
@@ -99,7 +104,7 @@ public class Menu {
 
     }
     
-    private void menu_to_User(String email) throws IOException {
+    private void menu_to_user(String email) throws IOException {
 
         limparEcra(4);
         System.out.println("\t\t\t\t--------------------------------");
@@ -148,13 +153,10 @@ public class Menu {
                 break;
             case 2:
                 limparEcra(3);
-                if(aut_admin(String user,String pass)){
-                menu_to_admin();
-            }
-                else{
-                        System.out.println("Dados mal inseridos!");
+                List<Jogo> res = ca.verJogosDecorrer(); 
+                        for(Jogo j : res){
+                            System.out.println(j.getIdJogo()+" : "+j.getEquipa1()+"-"+j.getEquipa2()+" : "+j.getOddUm()+"-"+j.getOddX()+"-"+j.getOddUm());
                         }
-                break;
             case 0:
                 limparEcra(3);
                 menu_principal();
