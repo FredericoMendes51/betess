@@ -109,9 +109,37 @@ public class User {
     
     
     //metodos
+    //ver o historico de todas as apostas efetuadas
     public void verHistoricoApostas(){
         for(Aposta a : this.historicoApostas)
             System.out.println("Aposta: "+a.getIdAposta()+ " -> Valor Apostado: "+a.getValorApostado());
+    }
+    
+    //ver todos os jogos a decorrer para apostar
+    public void verJogosDecorrer(List<Jogo> listaJogos){
+        for(Jogo j : listaJogos){
+            System.out.println(j.getIdJogo()+" : "+j.getEquipa1()+"-"+j.getEquipa2()+" : "+j.getOddUm()+"-"+j.getOddX()+"-"+j.getOddUm());
+        }
+    }
+    
+    //metodo para depositar dinheiro
+    public void depositarBetCoins(float money){
+        float temp = this.getSaldo();
+        this.setSaldo(temp+money);
+        System.out.println("O seu saldo final é "+(temp+money));
+    }
+    
+    //metodo para levantar dinheiro
+    public void levantarBetCoins(float money){
+        float temp = this.getSaldo();
+        if(money > temp){
+            System.out.println("Erro: Saldo Insuficiente.");
+        }
+        else{
+            temp -= money;
+            this.setSaldo(temp);
+            System.out.println("Levantou "+money+" BetCoins.\n O seu saldo final é "+temp);
+        }
     }
     
     
