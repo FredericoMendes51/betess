@@ -31,12 +31,12 @@ public class Aposta {
         this.tipoAposta="";
     }
 
-    public Aposta(int idAposta, boolean estado, double valorApostado, String userId, String resultado, float um, float dois, float x, Jogo jogo, boolean abriu, String tipoAposta) {
+    public Aposta(int idAposta, boolean estado, double valorApostado, String userId, float um, float dois, float x, Jogo jogo, boolean abriu, String tipoAposta) {
         this.idAposta = idAposta;
         this.estado = estado;
         this.valorApostado = valorApostado;
         this.userId = userId;
-        this.resultado = resultado;
+    //    this.resultado = resultado;
         this.jogo = jogo;
         this.tipoAposta = tipoAposta;
     }

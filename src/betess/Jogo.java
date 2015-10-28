@@ -13,11 +13,11 @@ class Jogo {
     private int idJogo;
     private String equipa1;
     private String equipa2;
-    private String resultado;
+    private String resultado; //so é preciso alterar depois de fechar o jogo
     private float oddUm;
     private float oddDois;
     private float oddX;
-    private boolean acabou;
+    private boolean acabou; //boleano que diz que fechou a aposta
     
     
     public Jogo(){
@@ -31,15 +31,15 @@ class Jogo {
         this.acabou=false;
     }
 
-    public Jogo(int idJogo, String equipa1, String equipa2, String resultado, float oddUm, float oddDois, float oddX, boolean acabou) {
+    public Jogo(int idJogo, String equipa1, String equipa2, float oddUm, float oddDois, float oddX) {
         this.idJogo = idJogo;
         this.equipa1 = equipa1;
         this.equipa2 = equipa2;
-        this.resultado = resultado;
+    //    this.resultado = resultado;
         this.oddUm = oddUm;
         this.oddDois = oddDois;
         this.oddX = oddX;
-        this.acabou=acabou;
+     //   this.acabou=acabou;
     }
     
     public Jogo(Jogo j){
