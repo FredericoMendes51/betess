@@ -184,11 +184,21 @@ public class Menu {
                 
             case 6:
                 limparEcra(3);
-                print_linha("Introduza os BetESS que deseja depositar ");
+                print_linha("Introduza os BetESS que deseja depositar:");
                 double N5 = this.input.lerDouble();
                 
-                ca.depositarBetCoins(email, N5);
+                String cenas =ca.depositarBetCoins(email, N5);
+                System.out.println(cenas);
                 
+                break;
+                
+            case 7:
+                limparEcra(3);
+                print_linha("Introduza a quantia que pretende levantar:");
+                double N6 = this.input.lerDouble();
+                
+                String resposta2 = ca.depositarBetCoins(email, N5);
+                System.out.println(resposta2);
                 break;
                 
             case 0:
