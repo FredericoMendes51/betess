@@ -66,6 +66,10 @@ public class Menu {
         switch (opcao) {
             case 1:
                 limparEcra(3);
+                print_linha("Introduza o seu email");
+                String email = this.input.lerString();
+                print_linha("Introduza a sua password");
+                String pass = this.input.lerString();
                 if(ca.aut_user(String email,String pass)){
                     menu_to_user(email);
                 }
@@ -75,7 +79,11 @@ public class Menu {
                 break;
             case 2:
                 limparEcra(3);
-                if(ca.aut_admin(String user,String pass)){
+                print_linha("Introduza o seu email");
+                String user = this.input.lerString();
+                print_linha("Introduza a sua password");
+                String pass2 = this.input.lerString();
+                if(ca.aut_admin(String user,String pass2)){
                 menu_to_admin();
             }
                 else{
@@ -127,7 +135,10 @@ public class Menu {
                 print_linha("Introduza o Montante que quer apostar");
                 double N3 = this.input.lerDouble();
                 
-                resultado = ca.apostar(email, N2, N3);
+                print_linha("Introduza o tipo de aposta");
+                String tipo = this.input.lerString();
+                
+                resultado = ca.apostar(email, N2, N3, tipo);
                 
                 System.out.println(resultado + "\n");
                 
