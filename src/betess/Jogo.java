@@ -17,6 +17,7 @@ class Jogo {
     private float oddUm;
     private float oddDois;
     private float oddX;
+    private boolean acabou;
     
     
     public Jogo(){
@@ -27,9 +28,10 @@ class Jogo {
         this.oddUm=0;
         this.oddDois=0;
         this.oddX=0;
+        this.acabou=false;
     }
 
-    public Jogo(int idJogo, String equipa1, String equipa2, String resultado, float oddUm, float oddDois, float oddX) {
+    public Jogo(int idJogo, String equipa1, String equipa2, String resultado, float oddUm, float oddDois, float oddX, boolean acabou) {
         this.idJogo = idJogo;
         this.equipa1 = equipa1;
         this.equipa2 = equipa2;
@@ -37,6 +39,7 @@ class Jogo {
         this.oddUm = oddUm;
         this.oddDois = oddDois;
         this.oddX = oddX;
+        this.acabou=acabou;
     }
     
     public Jogo(Jogo j){
@@ -47,6 +50,7 @@ class Jogo {
         this.oddUm=j.getOddUm();
         this.oddDois=j.getOddDois();
         this.oddX=j.getOddX();
+        this.acabou=j.getAcabou();
     }
 
     public int getIdJogo() {
@@ -75,6 +79,10 @@ class Jogo {
 
     public float getOddX() {
         return oddX;
+    }
+    
+    public boolean getAcabou(){
+        return acabou;
     }
 
     public void setIdJogo(int idJogo) {
@@ -105,6 +113,9 @@ class Jogo {
         this.oddX = oddX;
     }
     
+    public void setAcabou(boolean acabou) {
+        this.acabou = acabou;
+    }
     
     
     @Override

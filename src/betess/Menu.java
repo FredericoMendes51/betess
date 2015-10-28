@@ -117,12 +117,20 @@ public class Menu {
         System.out.println("\t\t\t\t--------------------------------");
         int opcao;
         opcao = input.lerInteiro();
+         String resultado ="";
         switch (opcao) {
             case 1:
                 limparEcra(3);
-                ca.apostar(email, id_jogo, montante, tipoAposta);
+                print_linha("Introduza o Numero de jogo");
+                int N2 = this.input.lerInteiro();
                 
-            }
+                print_linha("Introduza o Montante que quer apostar");
+                double N3 = this.input.lerDouble();
+                
+                resultado = ca.apostar(email, N2, N3);
+                
+                System.out.println(resultado + "\n");
+                
                 else{
                         System.out.println("Dados mal inseridos!");
                         }

@@ -16,7 +16,6 @@ public class Aposta {
     private String userId; 
     private String resultado; //ganha ou perdida
     private Jogo jogo;
-    private boolean abriu;
     private String tipoAposta;
 
 
@@ -29,7 +28,6 @@ public class Aposta {
         this.userId="";
         this.resultado="";
         this.jogo = new Jogo();
-        this.abriu=false;
         this.tipoAposta="";
     }
 
@@ -40,7 +38,6 @@ public class Aposta {
         this.userId = userId;
         this.resultado = resultado;
         this.jogo = jogo;
-        this.abriu = abriu;
         this.tipoAposta = tipoAposta;
     }
     
@@ -51,7 +48,6 @@ public class Aposta {
         this.userId=a.getUserId();
         this.resultado=a.getResultado();
         this.jogo=a.getJogo();
-        this.abriu=a.isAbriu();
         this.tipoAposta=a.getTipoAposta();
     }
 
@@ -80,9 +76,6 @@ public class Aposta {
         return jogo.clone();
     }
 
-    public boolean isAbriu() {
-        return abriu;
-    }
 
     public String getTipoAposta() {
         return tipoAposta;
@@ -113,9 +106,7 @@ public class Aposta {
         this.jogo = jogo;
     }
 
-    public void setAbriu(boolean abriu) {
-        this.abriu = abriu;
-    }
+
 
     public void setTipoAposta(String tipoAposta) {
         this.tipoAposta = tipoAposta;
@@ -124,23 +115,7 @@ public class Aposta {
     
 
     @Override
-    public String toString() {
-        StringBuilder s = new StringBuilder();
-        s.append("Aposta : ");
-        s.append(this.idAposta).append(", tem como valor apostado: ");
-        if(this.estado==false){
-            if(this.abriu==true){
-                s.append("e neste momento encontra-se fechada, e foi ").append(this.resultado);
-                s.append(".\n");
-            }
-            else{
-                s.append("e neste momento encontra-se fechada");
-            }
-        }else{
-            s.append("e neste momento encontra-se aberta.\n");
-        }
-        return s.toString();
-    }
+    
     
     @Override
     public Aposta clone() {
