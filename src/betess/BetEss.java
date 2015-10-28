@@ -5,6 +5,8 @@
  */
 package betess;
 
+import java.io.IOException;
+
 /**
  *
  * @author fredericomendes
@@ -14,8 +16,15 @@ public class BetEss {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        // TODO code application logic here
+    
+    private static Menu menu = new Menu();
+    
+    public static void main(String[] args) throws IOException {
+        
+        
+        menu.menu_principal();
+        
+        
     }
     
 }

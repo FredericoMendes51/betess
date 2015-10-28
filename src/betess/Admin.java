@@ -18,11 +18,11 @@ public class Admin {
     private String password;
     private boolean log;
     
-    public Admin(int idAdmin, String username, String password, Boolean log){
+    public Admin(int idAdmin, String username, String password){
         this.idAdmin = idAdmin;
         this.username = username;
         this.password = password;
-        this.log=log;
+    //    this.log=log;
     }
     
     public Admin(Admin a){

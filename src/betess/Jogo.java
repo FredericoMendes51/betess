@@ -14,9 +14,9 @@ class Jogo {
     private String equipa1;
     private String equipa2;
     private String resultado; //so é preciso alterar depois de fechar o jogo
-    private float oddUm;
-    private float oddDois;
-    private float oddX;
+    private double oddUm;
+    private double oddDois;
+    private double oddX;
     private boolean acabou; //boleano que diz que fechou a aposta
     
     
@@ -31,7 +31,7 @@ class Jogo {
         this.acabou=false;
     }
 
-    public Jogo(int idJogo, String equipa1, String equipa2, float oddUm, float oddDois, float oddX) {
+    public Jogo(int idJogo, String equipa1, String equipa2, double oddUm, double oddDois, double oddX) {
         this.idJogo = idJogo;
         this.equipa1 = equipa1;
         this.equipa2 = equipa2;
@@ -39,7 +39,7 @@ class Jogo {
         this.oddUm = oddUm;
         this.oddDois = oddDois;
         this.oddX = oddX;
-     //   this.acabou=acabou;
+        this.acabou = false;
     }
     
     public Jogo(Jogo j){
@@ -69,15 +69,15 @@ class Jogo {
         return resultado;
     }
 
-    public float getOddUm() {
+    public double getOddUm() {
         return oddUm;
     }
 
-    public float getOddDois() {
+    public double getOddDois() {
         return oddDois;
     }
 
-    public float getOddX() {
+    public double getOddX() {
         return oddX;
     }
     
@@ -101,15 +101,15 @@ class Jogo {
         this.resultado = resultado;
     }
 
-    public void setOddUm(float oddUm) {
+    public void setOddUm(double oddUm) {
         this.oddUm = oddUm;
     }
 
-    public void setOddDois(float oddDois) {
+    public void setOddDois(double oddDois) {
         this.oddDois = oddDois;
     }
 
-    public void setOddX(float oddX) {
+    public void setOddX(double oddX) {
         this.oddX = oddX;
     }
     

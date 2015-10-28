@@ -26,7 +26,7 @@ public class CasaApostas {
     
     public CasaApostas(){
         this.idApostas = 0;
-         this.idJogo = 0;
+        this.idJogo = 0;
         this.apostas = new HashMap<>();
         this.users = new HashMap<>();
         this.admins = new HashMap<>();
@@ -67,6 +67,28 @@ public class CasaApostas {
         this.admins = ca.getAdmins();
         this.jogos = ca.getJogos();
     }
+    
+    public void preDefinicao(){
+        //Admins
+        Admin ad1 = new Admin(0, "admin1", "passadmin1");
+        Admin ad2 = new Admin(1, "admin2@gmail.com", "passadmin2");
+        
+        this.admins.put(ad1.getIdAdmin(), ad1);
+        this.admins.put(ad2.getIdAdmin(), ad2);
+        
+        //Users
+        User user1 = new User("user1@gmail.com", "passuser1","Sou o Utilizador 1", 150.00);
+        User user2 = new User("user2@gmail.com", "passuser2","Sou o Utilizador 2", 1510.00);
+        
+        this.users.put(user1.getEmail(), user1);
+        this.users.put(user2.getEmail(), user2);
+        
+        //Jogos
+        Jogo jogo1 = new Jogo(0, "Sporting","Braga", 1.32, 8.0, 4.0);
+        this.jogos.put(jogo1.getIdJogo(), jogo1);
+    }
+    
+    
     
     public int getIdApostas(){
         return this.idApostas;
@@ -141,6 +163,7 @@ public class CasaApostas {
         for(User u : this.users.values()){
             if(u.getEmail().equals(email) && u.getPassword().equals(pass)){
                 ret = true;
+                u.setLog(true);
                 break;
             }
         }
@@ -155,6 +178,7 @@ public class CasaApostas {
         for(Admin a : this.admins.values()){
             if(a.getUsername().equals(username) && a.getPassword().equals(pass)){
                 ret = true;
+                a.setLog(true);
                 break;
             }
         }
@@ -275,13 +299,13 @@ public class CasaApostas {
     
     //metodo para adicionar um jogo
     
-    public void criaJogo(String equipa1, String equipa2, float oddUm,float odd2, float oddX){
+    public void criaJogo(String equipa1, String equipa2, double oddUm,double odd2, double oddX){
         this.idJogo++;
         Jogo j = new Jogo(idJogo, equipa1, equipa2, oddUm, odd2, oddX );
         this.jogos.put(idJogo, j);
     }
     
-    public String editaJogo(int idJogo, String equipa1, String equipa2, float oddUm,float odd2, float oddX){
+    public String editaJogo(int idJogo, String equipa1, String equipa2, double oddUm,double odd2, double oddX){
         String res;
         if(this.jogos.get(idJogo)!=null){
             res="O jogo que escolheu não existe";
@@ -351,6 +375,8 @@ public class CasaApostas {
         return res;
     }
         
+    
+    
     
     public CasaApostas clone() {
         return new CasaApostas(this);

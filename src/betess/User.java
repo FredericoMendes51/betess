@@ -21,14 +21,13 @@ public class User {
     private List<Aposta> apostasAtivas;
     private boolean log;
     
-    public User (String email, String pass, String nome, double saldo, Boolean log){
+    public User (String email, String pass, String nome, double saldo){
         this.email = email;
         this.password = pass;
         this.nome = nome;
         this.saldo = saldo;
         this.historicoApostas = new ArrayList<>();
         this.apostasAtivas = new ArrayList<>();
-        this.log=log;
     }
     
     public User (User u){
@@ -38,7 +37,6 @@ public class User {
         this.saldo = u.getSaldo();
         this.historicoApostas = u.getHistoricoApostas();
         this.apostasAtivas = u.getApostasAtivas();
-        this.log = u.getLog();
     }
     
     public String getEmail(){

@@ -41,9 +41,10 @@ public class Menu {
         switch (opcao) {
             case 1:
                 limparEcra(2);
-                print_linha("Nome do ficheiro :");
-                String nome_ficheiro2 = this.input.lerString();
-                this.ca = this.ca.load_ca(nome_ficheiro2);
+                //print_linha("Nome do ficheiro :");
+                //String nome_ficheiro2 = this.input.lerString();
+                //this.ca = this.ca.load_ca(nome_ficheiro2);
+                this.ca.preDefinicao();
                 menu_after_leitura();
                 break;
 
@@ -88,9 +89,10 @@ public class Menu {
                 String user = this.input.lerString();
                 print_linha("Introduza a sua password");
                 String pass2 = this.input.lerString();
+                
                 if(ca.aut_admin( user, pass2)){
-                menu_to_admin();
-            }
+                    menu_to_admin(user);
+                }
                 else{
                         System.out.println("Dados mal inseridos!");
                         }
@@ -262,13 +264,13 @@ public class Menu {
                 String equipa2 = this.input.lerString();
                 
                 print_linha("Introduza a odd para a vitória da equipa da casa");
-                Float oddUm = this.input.lerFloat();
+                double oddUm = this.input.lerDouble();
                 
                 print_linha("Introduza a odd para empate");
-                Float oddX = this.input.lerFloat();
+                double oddX = this.input.lerDouble();
                 
                 print_linha("Introduza a odd para vitória da equipa visitante");
-                Float oddDois = this.input.lerFloat();
+                double oddDois = this.input.lerDouble();
                 
                 ca.criaJogo(equipa1, equipa2, oddUm, oddDois, oddX);
                 
