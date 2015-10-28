@@ -31,7 +31,7 @@ public class Aposta {
         this.tipoAposta="";
     }
 
-    public Aposta(int idAposta, boolean estado, double valorApostado, String userId, float um, float dois, float x, Jogo jogo, boolean abriu, String tipoAposta) {
+    public Aposta(int idAposta, boolean estado, double valorApostado, String userId, Jogo jogo, String tipoAposta) {
         this.idAposta = idAposta;
         this.estado = estado;
         this.valorApostado = valorApostado;

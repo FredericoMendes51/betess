@@ -134,7 +134,8 @@ public class CasaApostas {
         }
         else{
             this.idApostas++;
-            aposta = userAux.apostar(this.idApostas, jogoAux, montante, tipoAposta);
+            userAux.apostar(email, this.idApostas, jogoAux, montante, tipoAposta);
+            aposta = "Aposta concluida.\n";
         }
         
         return aposta;

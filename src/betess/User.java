@@ -111,8 +111,8 @@ public class User {
     //metodos
     
     //metodo apostar
-    public String apostar(int id_aposta, Jogo id_jogo, float montante, String tipoAposta){
-       
+    public void apostar(String email, int id_aposta, Jogo id_jogo, float montante, String tipoAposta){
+       Aposta apostaAux = new Aposta(id_aposta, true, montante, email, id_jogo, tipoAposta);  
     }
     
     //ver o historico de todas as apostas efetuadas
