@@ -19,4 +19,5 @@ public class Aposta {
     private float dois;
     private float x;
     private String aposta;
+    private Jogo jogo;
 }
