@@ -14,7 +14,7 @@ public class Aposta {
     private boolean estado;
     private double valorApostado;
     private String userId; 
-    private String resultado;
+    private String resultado; //ganha ou perdida
     private Jogo jogo;
     private boolean abriu;
     private String tipoAposta;
@@ -129,10 +129,35 @@ public class Aposta {
         s.append("Aposta : ");
         s.append(this.idAposta).append(", tem como valor apostado: ");
         if(this.estado==false){
-            s.append("e neste momento encontra-se fechada").append(", tem como valor apostado: ");
+            if(this.abriu==true){
+                s.append("e neste momento encontra-se fechada, e foi ").append(this.resultado);
+                s.append(".\n");
+            }
+            else{
+                s.append("e neste momento encontra-se fechada");
+            }
+        }else{
+            s.append("e neste momento encontra-se aberta.\n");
         }
         return s.toString();
     }
+    
+    @Override
+    public Aposta clone() {
+        return new Aposta(this);
+    }
+    
+    public boolean equals(Aposta a) {
+        if (this == a) {
+            return true;
+        }
+        if ((a == null) || (this.getClass() != a.getClass())) {
+            return false;
+        }
+        Aposta e = (Aposta) a;
+        return this.idAposta==(e.getIdAposta());
+    }
+    
     
         
 }
