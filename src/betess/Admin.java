@@ -16,17 +16,20 @@ public class Admin {
     private String idAdmin;
     private String username;
     private String password;
+    private boolean log;
     
-    public Admin(String idAdmin, String username, String password){
+    public Admin(String idAdmin, String username, String password, Boolean log){
         this.idAdmin = idAdmin;
         this.username = username;
         this.password = password;
+        this.log=log;
     }
     
     public Admin(Admin a){
         this.idAdmin = a.getIdAdmin();
         this.username = a.getUsername();
         this.password = a.getPassword();
+        this.log = a.getLog();
     }
     
     public String getIdAdmin(){
@@ -40,6 +43,50 @@ public class Admin {
     public String getPassword(){
         return this.password;
     }
+   
+    public Boolean getLog(){
+        return this.log;
+    }
+
+    public void setIdAdmin(String idAdmin) {
+        this.idAdmin = idAdmin;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setLog(boolean log) {
+        this.log = log;
+    }
+
+    @Override
+    public Admin clone() {
+        return new Admin(this);
+    }
+    
+    public boolean equals(Admin a) {
+        if (this == a) {
+            return true;
+        }
+        if ((a == null) || (this.getClass() != a.getClass())) {
+            return false;
+        }
+        Admin e = (Admin) a;
+        return this.idAdmin==(e.getIdAdmin());
+    }
+    
+    @Override
+    public String toString() {
+        return "Admin:" + "idAdmin=" + idAdmin + ", username=" + username + '.';
+    }
+    
+    
+   
 
 }
     

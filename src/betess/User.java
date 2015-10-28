@@ -17,16 +17,18 @@ public class User {
     private String password;
     private String nome;
     private float saldo;
-    List<Aposta> historicoApostas;
-    List<Aposta> apostasAtivas;
+    private List<Aposta> historicoApostas;
+    private List<Aposta> apostasAtivas;
+    private boolean log;
     
-    public User (String email, String pass, String nome, float saldo){
+    public User (String email, String pass, String nome, float saldo, Boolean log){
         this.email = email;
         this.password = pass;
         this.nome = nome;
         this.saldo = saldo;
         this.historicoApostas = new ArrayList<>();
         this.apostasAtivas = new ArrayList<>();
+        this.log=log;
     }
     
     public User (User u){
@@ -40,6 +42,7 @@ public class User {
         for(Aposta a : u.getApostasAtivas()){
             this.historicoApostas.add(a);
         }
+        this.log = u.getLog();
     }
     
     public String getEmail(){
@@ -58,6 +61,10 @@ public class User {
         return this.saldo;
     }
     
+    public Boolean getLog(){
+        return this.log;
+    }
+    
     public List<Aposta> getHistoricoApostas(){
         List<Aposta> aux = new ArrayList<>();
         for(Aposta a : this.historicoApostas)
@@ -65,6 +72,32 @@ public class User {
         
         return aux;
     }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setHistoricoApostas(List<Aposta> historicoApostas) {
+        this.historicoApostas = historicoApostas;
+    }
+
+    public void setApostasAtivas(List<Aposta> apostasAtivas) {
+        this.apostasAtivas = apostasAtivas;
+    }
+
+    public void setLog(boolean log) {
+        this.log = log;
+    }
+    
+    
     
     public List<Aposta> getApostasAtivas(){
         List<Aposta> aux = new ArrayList<>();
@@ -84,7 +117,26 @@ public class User {
         for(Aposta a : this.historicoApostas)
             System.out.println("Aposta: "+a.getIdAposta()+ " -> Valor Apostado: "+a.getValorApostado());
     }
+
+    @Override
+    public String toString() {
+        return "User:" + "email=" + email + '.';
+    }
     
+    @Override
+    public User clone() {
+        return new User(this);
+    }
     
+    public boolean equals(User a) {
+        if (this == a) {
+            return true;
+        }
+        if ((a == null) || (this.getClass() != a.getClass())) {
+            return false;
+        }
+        User e = (User) a;
+        return this.email==(e.getEmail());
+    }
     
 }

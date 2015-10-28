@@ -114,6 +114,12 @@ class Jogo {
         s.append(this.idJogo).append("em que se defrontam a equipa ");
         s.append(this.equipa1).append("e a equipa ");
         s.append(this.equipa2).append(".\n");
+        s.append("Neste momento o resultado é:").append(this.resultado);
+        s.append("\n");
+        s.append("Tem como odd para a vitória da equipa da casa: ").append(this.oddUm);
+        s.append(" para o empate: ").append(this.oddX);
+        s.append(" e para a vitória da equipa visitante: ").append(this.oddDois);
+        s.append("\n");
         return s.toString();
     }
     
