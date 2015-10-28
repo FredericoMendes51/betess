@@ -17,6 +17,7 @@ import java.util.Set;
  */
 public class CasaApostas {
     private int idApostas;
+    private int idJogo;
     private Map<Integer, Aposta> apostas;
     private Map<String, User> users;
     private Map<Integer, Admin> admins;
@@ -25,14 +26,16 @@ public class CasaApostas {
     
     public CasaApostas(){
         this.idApostas = 0;
+         this.idJogo = 0;
         this.apostas = new HashMap<>();
         this.users = new HashMap<>();
         this.admins = new HashMap<>();
         this.jogos = new HashMap<>();
     }
     
-    public CasaApostas (int idApostas, Set<Aposta> ap, Set <User> us, Set<Admin> ad, Set<Jogo> jo){
+    public CasaApostas (int idApostas, int idJogo,Set<Aposta> ap, Set <User> us, Set<Admin> ad, Set<Jogo> jo){
         this.idApostas = idApostas;
+        this.idJogo = idJogo;
         
         this.apostas = new HashMap<>();
         for(Aposta a : ap){
@@ -58,6 +61,7 @@ public class CasaApostas {
     
     public CasaApostas(CasaApostas ca){
         this.idApostas = ca.getIdApostas();
+        this.idJogo = ca.getIdJogo();
         this.apostas = ca.getApostas();
         this.users = ca.getUsers();
         this.admins = ca.getAdmins();
@@ -66,6 +70,10 @@ public class CasaApostas {
     
     public int getIdApostas(){
         return this.idApostas;
+    }
+    
+    public int getIdJogo(){
+        return this.idJogo;
     }
     
     public Map<Integer, Aposta> getApostas(){
@@ -165,7 +173,9 @@ public class CasaApostas {
         }
         else{
             this.idApostas++;
+            Aposta a=new Aposta(idApostas,true,montante,userAux.getEmail(),jogoAux.clone(),tipoAposta);
             userAux.apostar(email, this.idApostas, jogoAux, montante, tipoAposta);
+            this.apostas.put(idApostas, a);
             aposta = "Aposta concluida.\n";
         }
         
@@ -262,6 +272,85 @@ public class CasaApostas {
         }
             
     }
+    
+    //metodo para adicionar um jogo
+    
+    public void criaJogo(String equipa1, String equipa2, float oddUm,float odd2, float oddX){
+        this.idJogo++;
+        Jogo j = new Jogo(idJogo, equipa1, equipa2, oddUm, odd2, oddX );
+        this.jogos.put(idJogo, j);
+    }
+    
+    public String editaJogo(int idJogo, String equipa1, String equipa2, float oddUm,float odd2, float oddX){
+        String res;
+        if(this.jogos.get(idJogo)!=null){
+            res="O jogo que escolheu não existe";
+        }
+       this.jogos.get(idJogo).setEquipa1(equipa1);
+       this.jogos.get(idJogo).setEquipa2(equipa2);
+       this.jogos.get(idJogo).setOddDois(odd2);
+       this.jogos.get(idJogo).setOddUm(oddUm);
+       this.jogos.get(idJogo).setOddX(oddX);
+       res="Jogo editado com sucesso!!";
+       return res;
+    }
+    
+    public String eliminaJogo(int idJogo){
+        String res;
+        if(this.jogos.get(idJogo)!=null){
+            res="O jogo que escolheu não existe";
+        }
+        this.jogos.remove(this.jogos.get(idJogo));
+        res = "Jogo removido com sucesso";
+        return res;
+    }
+    
+    public List<Jogo> listaJogosDecorrer(){
+        List<Jogo> aux = new ArrayList<>();
+        for(Jogo j :this.jogos.values()){
+            if(!j.getAcabou()){
+                aux.add(j);
+            }
+        }
+        return aux;
+    }
+    
+    public List<Jogo> listaHistoricoJogos(){
+        List<Jogo> aux = new ArrayList<>();
+        for(Jogo j :this.jogos.values()){
+                aux.add(j);
+        }
+        return aux;
+    }
+    
+    public List<User> listaUsersOn(){
+        List<User> aux = new ArrayList<>();
+        for(User u :this.users.values()){
+            if(u.getLog()){
+                aux.add(u);
+            }
+        }
+        return aux;
+}
+    
+    public List<User> listaUsers(){
+        List<User> aux = new ArrayList<>();
+        for(User u :this.users.values()){
+                aux.add(u);
+        }
+        return aux;
+}
+    
+    public String terminaJogo(int idJogo, String resultado){
+        String res;
+        if(this.jogos.get(idJogo)!=null){
+            res="O jogo que escolheu não existe";
+        }
+        this.jogos.get(idJogo).setAcabou(true);
+        res = "Jogo terminado com sucesso";
+        return res;
+    }
+        
     
     public CasaApostas clone() {
         return new CasaApostas(this);

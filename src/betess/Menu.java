@@ -177,7 +177,7 @@ public class Menu {
                 print_linha("Introduza o Numero de aposta que pretende eliminar");
                 int N4 = this.input.lerInteiro();
                 
-                String resposta = retirarAposta(email,N4); 
+                String resposta = ca.retirarAposta(email,N4); 
                         
                 System.out.println(resposta);
                 break;
@@ -214,6 +214,154 @@ public class Menu {
                 String passNova = this.input.lerString();
                 
                 ca.alterarPassword(email,passNova);
+                break;
+                
+            case 0:
+                limparEcra(3);
+                menu_principal();
+                break;
+
+        }
+
+    }
+    
+    private void menu_to_admin(String email) throws IOException {
+
+        limparEcra(4);
+        System.out.println("\t\t\t\t--------------------------------");
+        System.out.println("\t\t\t\t1 - Criar Jogo");
+        System.out.println("\t\t\t\t--------------------------------");
+        System.out.println("\t\t\t\t2 - Editar Jogo");
+        System.out.println("\t\t\t\t--------------------------------");
+        System.out.println("\t\t\t\t3 - Listar histórico de apostas");
+        System.out.println("\t\t\t\t--------------------------------");
+        System.out.println("\t\t\t\t4 - Listar apostas a decorrer");
+        System.out.println("\t\t\t\t--------------------------------");
+        System.out.println("\t\t\t\t5 - Retirar Aposta");
+        System.out.println("\t\t\t\t--------------------------------");
+        System.out.println("\t\t\t\t6 - Depositar dinheiro");
+        System.out.println("\t\t\t\t--------------------------------");
+        System.out.println("\t\t\t\t7 - Levantar dinheiro");
+        System.out.println("\t\t\t\t--------------------------------");
+        System.out.println("\t\t\t\t8 - Ver o meu perfil");
+        System.out.println("\t\t\t\t--------------------------------");
+        System.out.println("\t\t\t\t9 - Mudar a password");
+        System.out.println("\t\t\t\t--------------------------------");
+        System.out.println("\t\t\t\t0 - Voltar");
+        System.out.println("\t\t\t\t--------------------------------");
+        int opcao;
+        opcao = input.lerInteiro();
+         String resultado ="";
+        switch (opcao) {
+            case 1:
+                limparEcra(3);
+                print_linha("Introduza o Nome da equipa que joga em casa");
+                String equipa1 = this.input.lerString();
+                
+                print_linha("Introduza o Nome da equipa que joga como visitante");
+                String equipa2 = this.input.lerString();
+                
+                print_linha("Introduza a odd para a vitória da equipa da casa");
+                Float oddUm = this.input.lerFloat();
+                
+                print_linha("Introduza a odd para empate");
+                Float oddX = this.input.lerFloat();
+                
+                print_linha("Introduza a odd para vitória da equipa visitante");
+                Float oddDois = this.input.lerFloat();
+                
+                ca.criaJogo(equipa1, equipa2, oddUm, oddDois, oddX);
+                
+                System.out.println("Jogo inserido com sucesso");
+                
+                break;
+            case 2:
+                limparEcra(3);
+                
+                print_linha("Introduza o Numero do jogo que pretende editar");
+                int idJogo = this.input.lerInteiro();
+                
+                print_linha("Introduza o Nome da equipa que joga em casa");
+                String equipa3 = this.input.lerString();
+                
+                print_linha("Introduza o Nome da equipa que joga como visitante");
+                String equipa4 = this.input.lerString();
+                
+                print_linha("Introduza a odd para a vitória da equipa da casa");
+                Float oddUm1 = this.input.lerFloat();
+                
+                print_linha("Introduza a odd para empate");
+                Float oddXX = this.input.lerFloat();
+                
+                print_linha("Introduza a odd para vitória da equipa visitante");
+                Float odd2 = this.input.lerFloat();
+                
+                String edit = ca.editaJogo(idJogo, equipa3, equipa4, oddUm1, oddXX, odd2);
+                
+                System.out.println(edit);
+                
+                break;
+                
+            case 3:
+                limparEcra(3);
+                
+                print_linha("Introduza o Numero do jogo que pretende eliminar");
+                int idJogo1 = this.input.lerInteiro();
+               
+                String remove = ca.eliminaJogo(idJogo1);
+                
+                System.out.println(remove);
+                break;
+           
+            case 4:
+                limparEcra(3);
+                List<Jogo> aux = ca.listaJogosDecorrer();
+                
+                for(Jogo j: aux){
+                    j.toString();
+                }
+                break;
+                
+            case 5:
+                limparEcra(3);
+                List<Jogo> aux2 = ca.listaHistoricoJogos();
+                
+                for(Jogo j: aux2){
+                    j.toString();
+                }
+                break;
+                
+            case 6:
+                limparEcra(3);
+                List<User> aux3 = ca.listaUsersOn();
+                
+                for(User u: aux3){
+                    u.toString();
+                }
+                break;
+                
+            case 7:
+                limparEcra(3);
+                List<User> aux4 = ca.listaUsers();
+                
+                for(User u: aux4){
+                    u.toString();
+                }
+                break;
+                
+            case 8:
+                print_linha("Introduza o Numero do jogo que pretende terminar");
+                int idJogo2 = this.input.lerInteiro();
+                
+                print_linha("Introduza o resultado do jogo (1 em caso de vitoria da equipa da casa, 2 em caso de vitória da equipa visitanta, x em caso de empate");
+                String score = this.input.lerString();
+                
+                while(!(score.equals("1")|(score.equals("x"))|(score.equals("2")))){
+                    print_linha("Introduza o resultado do jogo (1 em caso de vitoria da equipa da casa, 2 em caso de vitória da equipa visitanta, x em caso de empate");
+                    score = this.input.lerString();
+                }
+                String term = ca.terminaJogo(idJogo2, score);
+                
                 break;
                 
             case 0:
