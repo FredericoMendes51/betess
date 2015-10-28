@@ -83,7 +83,7 @@ public class CasaApostas {
     }
     
     public Map<Integer, Admin> getAdmins(){
-        Map<Integer, User> aux = new HashMap<>();
+        Map<Integer, Admin> aux = new HashMap<>();
         for(Admin ad : this.admins.values()){
             aux.put(ad.getIdAdmin(), ad.clone());
         }
@@ -113,7 +113,7 @@ public class CasaApostas {
     public void setAdmins(Map<Integer, Admin> adminAux){
         this.admins = new HashMap<>();
         for(Admin a : adminAux.values())
-            this.admins.put(a.getIdAdmins(), a.clone());
+            this.admins.put(a.getIdAdmin(), a.clone());
     }
     
     public void setJogos(Map<Integer, Jogo> jogoAux){

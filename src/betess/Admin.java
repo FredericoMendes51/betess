@@ -18,7 +18,7 @@ public class Admin {
     private String password;
     private boolean log;
     
-    public Admin(String idAdmin, String username, String password, Boolean log){
+    public Admin(int idAdmin, String username, String password, Boolean log){
         this.idAdmin = idAdmin;
         this.username = username;
         this.password = password;

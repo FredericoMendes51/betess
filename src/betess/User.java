@@ -116,7 +116,7 @@ public class User {
     
     
     public String verMinhasInformacoes(){
-        StringBuilder str  new StringBuilder();
+        StringBuilder str =  new StringBuilder();
         str.append("Email: ").append(+this.getEmail()).append("\n");
         str.append("Nome: ").append(+this.getNome()).append("\n");
         str.append("Saldo: ").append(+this.getSaldo()).append("\n");
