@@ -122,6 +122,10 @@ public class CasaApostas {
             this.jogos.put(a.getIdJogo(), a.clone());
     }
     
+    public CasaApostas clone() {
+        return new CasaApostas(this);
+    }
+    
     
     
 }

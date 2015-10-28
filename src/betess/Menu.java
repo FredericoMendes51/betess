@@ -55,11 +55,9 @@ public class Menu {
 
         limparEcra(4);
         System.out.println("\t\t\t\t--------------------------------");
-        System.out.println("\t\t\t\t1 - Consulta de estatisticas");
+        System.out.println("\t\t\t\t1 - Autenticar como User");
         System.out.println("\t\t\t\t--------------------------------");
-        System.out.println("\t\t\t\t2 - Consultas interactivas");
-        System.out.println("\t\t\t\t--------------------------------");
-        System.out.println("\t\t\t\t3 - Dados de leitura");
+        System.out.println("\t\t\t\t2 - Autenticar como Admin");
         System.out.println("\t\t\t\t--------------------------------");
         System.out.println("\t\t\t\t0 - Voltar");
         System.out.println("\t\t\t\t--------------------------------");
@@ -67,14 +65,10 @@ public class Menu {
         opcao = input.lerInteiro();
         switch (opcao) {
             case 1:
-                apresenta_estatisticas_de_leitura_1_2();
+                aut_user(String user,String pass);
                 break;
             case 2:
-                consultas_interactivas();
-                break;
-            case 3:
-                apresenta_estatisticas_de_leitura_1_1();
-                menu_after_leitura();
+                aut_admin(String user,String pass);
                 break;
 
             case 0:
