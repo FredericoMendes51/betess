@@ -202,9 +202,18 @@ public class Menu {
                 System.out.println(resposta2);
                 break;
                 
-            case 7:
+            case 8:
                 limparEcra(3);
-                verMinhasInformacoes(email);
+                ca.verMinhasInformacoes(email);
+                break;
+            
+            case 9:
+                limparEcra(3);
+               
+                print_linha("Introduza a nova password que pretende inserir:");
+                String passNova = this.input.lerString();
+                
+                ca.alterarPassword(email,passNova);
                 break;
                 
             case 0:
