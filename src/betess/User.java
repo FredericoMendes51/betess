@@ -111,7 +111,7 @@ public class User {
     //metodos
     
     //metodo apostar
-    public void apostar(String email, int id_aposta, Jogo id_jogo, float montante, String tipoAposta){
+    public void apostar(String email, int id_aposta, Jogo id_jogo, double montante, String tipoAposta){
        Aposta apostaAux = new Aposta(id_aposta, true, montante, email, id_jogo, tipoAposta);  
     }
     

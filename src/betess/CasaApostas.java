@@ -123,8 +123,37 @@ public class CasaApostas {
     }
     
     //metodos
+    
+    //metodo para autenticar user
+    public boolean aut_user(String email, String pass){
+        boolean ret = false;
+        
+        for(User u : this.users.values()){
+            if(u.getEmail().equals(email) && u.getPassword().equals(pass)){
+                ret = true;
+                break;
+            }
+        }
+        
+        return ret;
+    }
+    
+    //metodo para autenticar admin
+    public boolean aut_admin(String username, String pass){
+        boolean ret = false;
+        
+        for(Admin a : this.admins.values()){
+            if(a.getUsername().equals(username) && a.getPassword().equals(pass)){
+                ret = true;
+                break;
+            }
+        }
+        
+        return ret;
+    }
+    
     //metodo apostar
-    public String apostar(String email, int id_jogo, float montante, String tipoAposta){
+    public String apostar(String email, int id_jogo, double montante, String tipoAposta){
         User userAux = this.users.get(email);
         Jogo jogoAux = this.jogos.get(id_jogo);
         String aposta = null;
