@@ -62,6 +62,36 @@ public class CasaApostas {
         this.jogos = ca.getUsers();
     }
     
+    public int getIdApostas(){
+        return this.idApostas;
+    }
+    
+    public Map<Integer, Aposta> getApostas(){
+        Map<Integer, Aposta> aux = new HashMap<>();
+        for(Aposta a : this.apostas.values()){
+            aux.put(a.getIdAposta(), a.clone());
+        }
+        return aux;
+    }
+    
+    public Map<String, User> getUsers(){
+        Map<String, User> aux = new HashMap<>();
+        for(User u : this.users.values()){
+            aux.put(u.getEmail(), u.clone());
+        }
+        return aux;
+    }
+    
+    public Map<Integer, Admin> getAdmins(){
+        Map<String, User> aux = new HashMap<>();
+        for(Admin ad : this.admins.values()){
+            aux.put(ad.getEmail(), ad.clone());
+        }
+        return aux;
+    }
+    
+    
+    
     
     
 }
