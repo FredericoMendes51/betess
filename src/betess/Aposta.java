@@ -12,7 +12,11 @@ package betess;
 public class Aposta {
     
     private boolean estado;
-    private double valor;
-    private String userid; 
+    private double valorApostado;
+    private String userId; 
     private String resultado;
+    private float um;
+    private float dois;
+    private float x;
+    private String aposta;
 }
