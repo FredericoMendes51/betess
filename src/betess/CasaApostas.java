@@ -220,6 +220,14 @@ public class CasaApostas {
         return ret;
     }
     
+    public void depositarBetCoins(String email,double money){
+        for(User u : this.users.values()){
+            if(u.getEmail().equals(email)){
+                u.depositarBetCoins(money);
+            }
+    }
+    }
+    
     public CasaApostas clone() {
         return new CasaApostas(this);
     }

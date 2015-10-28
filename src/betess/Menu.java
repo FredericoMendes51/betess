@@ -183,6 +183,13 @@ public class Menu {
                 break;
                 
             case 6:
+                limparEcra(3);
+                print_linha("Introduza os BetESS que deseja depositar ");
+                double N5 = this.input.lerDouble();
+                
+                ca.depositarBetCoins(email, N5);
+                
+                break;
                 
             case 0:
                 limparEcra(3);

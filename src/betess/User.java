@@ -134,7 +134,7 @@ public class User {
     }
     
     //metodo para depositar dinheiro
-    public void depositarBetCoins(float money){
+    public void depositarBetCoins(double money){
         double temp = this.getSaldo();
         this.setSaldo(temp+money);
         System.out.println("O seu saldo final é "+(temp+money));
