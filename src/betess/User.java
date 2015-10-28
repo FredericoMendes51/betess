@@ -16,12 +16,12 @@ public class User {
     private String email;
     private String password;
     private String nome;
-    private float saldo;
+    private double saldo;
     private List<Aposta> historicoApostas;
     private List<Aposta> apostasAtivas;
     private boolean log;
     
-    public User (String email, String pass, String nome, float saldo, Boolean log){
+    public User (String email, String pass, String nome, double saldo, Boolean log){
         this.email = email;
         this.password = pass;
         this.nome = nome;
@@ -53,7 +53,7 @@ public class User {
         return this.nome;
     }
     
-    public float getSaldo(){
+    public double getSaldo(){
         return this.saldo;
     }
     
@@ -103,7 +103,7 @@ public class User {
     
     
     
-    public void setSaldo(float saldo){
+    public void setSaldo(double saldo){
         this.saldo = saldo;
     }
     
@@ -112,20 +112,22 @@ public class User {
     
     //metodo apostar
     public void apostar(String email, int id_aposta, Jogo id_jogo, double montante, String tipoAposta){
-       Aposta apostaAux = new Aposta(id_aposta, true, montante, email, id_jogo, tipoAposta);  
+       Aposta apostaAux = new Aposta(id_aposta, true, montante, email, id_jogo, tipoAposta); 
+       this.apostasAtivas.add(apostaAux);
+       this.setSaldo(this.getSaldo()-montante);
     }
     
     
     //metodo para depositar dinheiro
     public void depositarBetCoins(float money){
-        float temp = this.getSaldo();
+        double temp = this.getSaldo();
         this.setSaldo(temp+money);
         System.out.println("O seu saldo final é "+(temp+money));
     }
     
     //metodo para levantar dinheiro
     public void levantarBetCoins(float money){
-        float temp = this.getSaldo();
+        double temp = this.getSaldo();
         if(money > temp){
             System.out.println("Erro: Saldo Insuficiente.");
         }

@@ -195,6 +195,19 @@ public class CasaApostas {
         return auxAposta;
     }
     
+    //ver todas as apostas que estao a decorrer
+    public List<Aposta> verApostasDecorrer(String email){
+        List<Aposta> auxAposta = new ArrayList<>();
+        for(User u : this.users.values()){
+            if(u.getEmail().equals(email)){
+                auxAposta = u.getApostasAtivas();
+                break;
+            }
+        }
+        
+        return auxAposta;
+    }
+    
     public CasaApostas clone() {
         return new CasaApostas(this);
     }
