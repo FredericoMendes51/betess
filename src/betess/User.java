@@ -115,12 +115,6 @@ public class User {
        Aposta apostaAux = new Aposta(id_aposta, true, montante, email, id_jogo, tipoAposta);  
     }
     
-    //ver o historico de todas as apostas efetuadas
-    public void verHistoricoApostas(){
-        for(Aposta a : this.historicoApostas)
-            System.out.println("Aposta: "+a.getIdAposta()+ " -> Valor Apostado: "+a.getValorApostado());
-    }
-    
     
     //metodo para depositar dinheiro
     public void depositarBetCoins(float money){

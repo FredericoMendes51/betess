@@ -183,6 +183,18 @@ public class CasaApostas {
         return auxJogo;
     }
     
+    //ver o historico de apostas de um user
+    public List<Aposta> verHistoricoAposta(String email){
+        List<Aposta> auxAposta = new ArrayList<>();
+        for(User u : this.users.values()){
+            if(u.getEmail().equals(email)){
+                auxAposta = u.getHistoricoApostas();
+                break;
+            }
+        }
+        return auxAposta;
+    }
+    
     public CasaApostas clone() {
         return new CasaApostas(this);
     }
