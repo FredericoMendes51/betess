@@ -219,13 +219,26 @@ public class CasaApostas {
         }
         return ret;
     }
-    
-    public void depositarBetCoins(String email,double money){
+    //metodto para depositar dinheiro
+    public String depositarBetCoins(String email,double money){
+        String ret = null;
         for(User u : this.users.values()){
             if(u.getEmail().equals(email)){
-                u.depositarBetCoins(money);
+                ret = u.depositarBetCoins(money);
             }
+        }
+        return ret;
     }
+    
+    //meotodo para levantar dinheiro
+    public String levantarBetCoins(String email, double money){
+        String ret = null;
+        for(User u : this.users.values()){
+            if(u.getEmail().equals(email)){
+                ret = u.levantarBetCoins(money);
+            }
+        }
+        return ret;
     }
     
     public CasaApostas clone() {

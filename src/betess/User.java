@@ -134,23 +134,28 @@ public class User {
     }
     
     //metodo para depositar dinheiro
-    public void depositarBetCoins(double money){
+    public String depositarBetCoins(double money){
         double temp = this.getSaldo();
         this.setSaldo(temp+money);
-        System.out.println("O seu saldo final é "+(temp+money));
+        String ret = "O seu saldo final é "+(temp+money);
+        
+        return ret;
     }
     
     //metodo para levantar dinheiro
-    public void levantarBetCoins(float money){
+    public String levantarBetCoins(double money){
         double temp = this.getSaldo();
+        String ret = null;
         if(money > temp){
-            System.out.println("Erro: Saldo Insuficiente.");
+            ret = "Erro: Saldo Insuficiente.";
         }
         else{
             temp -= money;
             this.setSaldo(temp);
-            System.out.println("Levantou "+money+" BetCoins.\n O seu saldo final é "+temp);
+            ret = "Levantou "+money+" BetCoins.\n O seu saldo final é "+temp;
         }
+        
+        return ret;
     }
     
     
