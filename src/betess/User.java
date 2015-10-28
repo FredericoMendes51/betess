@@ -67,6 +67,11 @@ public class User {
         return aux;
     }
     
+    public void setSaldo(float saldo){
+        this.saldo = saldo;
+    }
+    
+    
     //metodos
     public void verHistoricoApostas(){
         for(Aposta a : this.historicoApostas)
