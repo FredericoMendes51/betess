@@ -120,7 +120,7 @@ public class Menu {
         switch (opcao) {
             case 1:
                 limparEcra(3);
-                apostar(email, id_jogo, montante);
+                ca.apostar(email, id_jogo, montante, tipoAposta);
                 
             }
                 else{

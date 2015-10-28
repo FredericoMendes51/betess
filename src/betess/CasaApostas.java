@@ -122,6 +122,24 @@ public class CasaApostas {
             this.jogos.put(a.getIdJogo(), a.clone());
     }
     
+    //metodos
+    //metodo apostar
+    public String apostar(String email, int id_jogo, float montante, String tipoAposta){
+        User userAux = this.users.get(email);
+        Jogo jogoAux = this.jogos.get(id_jogo);
+        String aposta = null;
+        
+        if(userAux.getSaldo() < montante){
+            aposta = "Saldo insuficiente.\n"; 
+        }
+        else{
+            this.idApostas++;
+            aposta = userAux.apostar(this.idApostas, jogoAux, montante, tipoAposta);
+        }
+        
+        return aposta;
+    }
+    
     public CasaApostas clone() {
         return new CasaApostas(this);
     }
