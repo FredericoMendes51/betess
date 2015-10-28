@@ -154,12 +154,36 @@ public class Menu {
                         for(Jogo j : res){
                             System.out.println(j.getIdJogo()+" : "+j.getEquipa1()+"-"+j.getEquipa2()+" : "+j.getOddUm()+"-"+j.getOddX()+"-"+j.getOddUm());
                         }
+                        break;
             case 3:
                 limparEcra(3);
-                List<Aposta> res2 = ca.verHistoricoApostas(email); 
+                List<Aposta> res2 = ca.verHistoricoAposta(email); 
                         for(Aposta a : res2){
                             System.out.println("Aposta: "+a.getIdAposta()+ " -> Valor Apostado: "+a.getValorApostado()+ "-> Ganho: ");
                         }
+            break;
+            
+            case 4:
+                limparEcra(3);
+                List<Aposta> res3 = ca.verApostasDecorrer(email); 
+                        for(Aposta a : res3){
+                            System.out.println("Aposta: "+a.getIdAposta()+ " -> Valor Apostado: "+a.getValorApostado());
+                        }
+            break;
+            
+            case 5:
+                limparEcra(3);
+                
+                print_linha("Introduza o Numero de aposta que pretende eliminar");
+                int N4 = this.input.lerInteiro();
+                
+                String resposta = retirarAposta(email,N4); 
+                        
+                System.out.println(resposta);
+                break;
+                
+            case 6:
+                
             case 0:
                 limparEcra(3);
                 menu_principal();
