@@ -208,6 +208,18 @@ public class CasaApostas {
         return auxAposta;
     }
     
+    //funcao para retirar aposta
+    public String retirarAposta(String email, int id_aposta){
+        String ret = null;
+        for(User u : this.users.values()){
+            if(u.getEmail().equals(email)){
+                Aposta ap = u.getApostasAtivas().get(id_aposta);
+                ret = u.retirarAposta(ap);
+            }
+        }
+        return ret;
+    }
+    
     public CasaApostas clone() {
         return new CasaApostas(this);
     }

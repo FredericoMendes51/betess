@@ -117,6 +117,21 @@ public class User {
        this.setSaldo(this.getSaldo()-montante);
     }
     
+    //metodo para retirar aposta
+    public String retirarAposta(Aposta a){
+        String ret = null;
+        if(a.getJogo().getAcabou() == true){
+            ret = "Já não dá para retirar aposta.\n";
+        }
+        else{
+            double valorApostado = a.getValorApostado();
+            valorApostado *= 0.9;
+            this.apostasAtivas.remove(a);
+            this.setSaldo(this.getSaldo() + valorApostado);
+            ret = "Aposta retirada com sucesso. Foram-lhe acrescentados "+valorApostado+"\n";
+        }
+        return ret;
+    }
     
     //metodo para depositar dinheiro
     public void depositarBetCoins(float money){
