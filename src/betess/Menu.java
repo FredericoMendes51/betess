@@ -66,9 +66,9 @@ public class Menu {
         switch (opcao) {
             case 1:
                 limparEcra(3);
-                if(ca.aut_user(String user,String pass)){
-                menu_to_user();
-            }
+                if(ca.aut_user(String email,String pass)){
+                    menu_to_user(email);
+                }
                 else{
                         System.out.println("Dados mal inseridos!");
                         }
@@ -91,7 +91,7 @@ public class Menu {
 
     }
     
-    private void menu_to_User() throws IOException {
+    private void menu_to_User(String email) throws IOException {
 
         limparEcra(4);
         System.out.println("\t\t\t\t--------------------------------");
@@ -120,7 +120,7 @@ public class Menu {
         switch (opcao) {
             case 1:
                 limparEcra(3);
-                aposta();
+                apostar(email, id_jogo, montante);
                 
             }
                 else{
