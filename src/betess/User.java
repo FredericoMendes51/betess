@@ -109,6 +109,12 @@ public class User {
     
     
     //metodos
+    
+    //metodo apostar
+    public String apostar(int id_aposta, Jogo id_jogo, float montante, String tipoAposta){
+       
+    }
+    
     //ver o historico de todas as apostas efetuadas
     public void verHistoricoApostas(){
         for(Aposta a : this.historicoApostas)
