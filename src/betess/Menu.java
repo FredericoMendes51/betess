@@ -65,19 +65,87 @@ public class Menu {
         opcao = input.lerInteiro();
         switch (opcao) {
             case 1:
-                aut_user(String user,String pass);
+                limparEcra(3);
+                if(ca.aut_user(String user,String pass)){
+                menu_to_user();
+            }
+                else{
+                        System.out.println("Dados mal inseridos!");
+                        }
                 break;
             case 2:
-                aut_admin(String user,String pass);
+                limparEcra(3);
+                if(ca.aut_admin(String user,String pass)){
+                menu_to_admin();
+            }
+                else{
+                        System.out.println("Dados mal inseridos!");
+                        }
                 break;
-
             case 0:
+                limparEcra(3);
                 menu_principal();
                 break;
 
         }
 
     }
+    
+    private void menu_to_User() throws IOException {
+
+        limparEcra(4);
+        System.out.println("\t\t\t\t--------------------------------");
+        System.out.println("\t\t\t\t1 - Apostar");
+        System.out.println("\t\t\t\t--------------------------------");
+        System.out.println("\t\t\t\t2 - Listar jogos a decorrer");
+        System.out.println("\t\t\t\t--------------------------------");
+        System.out.println("\t\t\t\t3 - Listar histórico de apostas");
+        System.out.println("\t\t\t\t--------------------------------");
+        System.out.println("\t\t\t\t4 - Listar apostas a decorrer");
+        System.out.println("\t\t\t\t--------------------------------");
+        System.out.println("\t\t\t\t5 - Retirar Aposta");
+        System.out.println("\t\t\t\t--------------------------------");
+        System.out.println("\t\t\t\t6 - Depositar dinheiro");
+        System.out.println("\t\t\t\t--------------------------------");
+        System.out.println("\t\t\t\t7 - Levantar dinheiro");
+        System.out.println("\t\t\t\t--------------------------------");
+        System.out.println("\t\t\t\t8 - Ver o meu perfil");
+        System.out.println("\t\t\t\t--------------------------------");
+        System.out.println("\t\t\t\t9 - Mudar a password");
+        System.out.println("\t\t\t\t--------------------------------");
+        System.out.println("\t\t\t\t0 - Voltar");
+        System.out.println("\t\t\t\t--------------------------------");
+        int opcao;
+        opcao = input.lerInteiro();
+        switch (opcao) {
+            case 1:
+                limparEcra(3);
+                aposta();
+                
+            }
+                else{
+                        System.out.println("Dados mal inseridos!");
+                        }
+                break;
+            case 2:
+                limparEcra(3);
+                if(aut_admin(String user,String pass)){
+                menu_to_admin();
+            }
+                else{
+                        System.out.println("Dados mal inseridos!");
+                        }
+                break;
+            case 0:
+                limparEcra(3);
+                menu_principal();
+                break;
+
+        }
+
+    }
+    
+    
     private void print_linha(String linha) {
         System.out.println(linha);
 
