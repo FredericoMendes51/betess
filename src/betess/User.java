@@ -113,6 +113,22 @@ public class User {
         for(Aposta a : this.historicoApostas)
             System.out.println("Aposta: "+a.getIdAposta()+ " -> Valor Apostado: "+a.getValorApostado());
     }
+    
+    
+    public String verMinhasInformacoes(){
+        StringBuilder str  new StringBuilder();
+        str.append("Email: ").append(+this.getEmail()).append("\n");
+        str.append("Nome: ").append(+this.getNome()).append("\n");
+        str.append("Saldo: ").append(+this.getSaldo()).append("\n");
+        
+        return str.toString();
+    }
+    
+    public void alterarPassword(String newPassword){
+        this.setPassword(newPassword);
+    }
+    
+    
 
     @Override
     public String toString() {
