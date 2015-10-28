@@ -241,6 +241,18 @@ public class CasaApostas {
         return ret;
     }
     
+    //metodo para ver as informacoes do utilizador
+    public String verMinhasInformacoes(String email){
+        String ret = null;
+        for(User u : this.users.values()){
+            if(u.getEmail().equals(email)){
+                ret = u.verMinhasInformacoes();
+            }
+        }
+        
+        return ret;
+    }
+    
     public CasaApostas clone() {
         return new CasaApostas(this);
     }
