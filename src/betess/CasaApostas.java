@@ -83,9 +83,17 @@ public class CasaApostas {
     }
     
     public Map<Integer, Admin> getAdmins(){
-        Map<String, User> aux = new HashMap<>();
+        Map<Integer, User> aux = new HashMap<>();
         for(Admin ad : this.admins.values()){
-            aux.put(ad.getEmail(), ad.clone());
+            aux.put(ad.getIdAdmin(), ad.clone());
+        }
+        return aux;
+    }
+    
+    public Map<Integer, User> getJogos(){
+        Map<Integer, User> aux = new HashMap<>();
+        for(Jogo j : this.jogos.values()){
+            aux.put(j.getIdJogo(), j.clone());
         }
         return aux;
     }
