@@ -147,15 +147,18 @@ public class Menu {
                 
                 System.out.println(resultado + "\n");
                 
-                else{
-                        System.out.println("Dados mal inseridos!");
-                        }
                 break;
             case 2:
                 limparEcra(3);
                 List<Jogo> res = ca.verJogosDecorrer(); 
                         for(Jogo j : res){
                             System.out.println(j.getIdJogo()+" : "+j.getEquipa1()+"-"+j.getEquipa2()+" : "+j.getOddUm()+"-"+j.getOddX()+"-"+j.getOddUm());
+                        }
+            case 3:
+                limparEcra(3);
+                List<Aposta> res2 = ca.verHistoricoApostas(email); 
+                        for(Aposta a : res2){
+                            System.out.println("Aposta: "+a.getIdAposta()+ " -> Valor Apostado: "+a.getValorApostado()+ "-> Ganho: ");
                         }
             case 0:
                 limparEcra(3);
