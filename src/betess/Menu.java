@@ -29,8 +29,6 @@ public class Menu {
         this.input = new Input();
     }
     
-    
-    
     public void menu_principal() throws IOException {
         Input i = new Input();
         System.out.println("  \t\t\t\t--------------------------------");
@@ -62,6 +60,8 @@ public class Menu {
         System.out.println("\t\t\t\t1 - Autenticar como User");
         System.out.println("\t\t\t\t--------------------------------");
         System.out.println("\t\t\t\t2 - Autenticar como Admin");
+        System.out.println("\t\t\t\t--------------------------------");
+        System.out.println("\t\t\t\t3 - Registar");
         System.out.println("\t\t\t\t--------------------------------");
         System.out.println("\t\t\t\t0 - Voltar");
         System.out.println("\t\t\t\t--------------------------------");
@@ -98,6 +98,25 @@ public class Menu {
                         System.out.println("Dados mal inseridos!");
                         }
                 break;
+            case 3:
+                limparEcra(3);
+                print_linha("Introduza o seu email");
+                String userRegisto = this.input.lerString();
+                print_linha("Introduza a sua password");
+                String passRegisto = this.input.lerString();
+                print_linha("Introduza o seu Nome");
+                String nomeRegisto = this.input.lerString();
+                print_linha("Introduza o saldo inicial");
+                String saldoRegisto = this.input.lerString();
+                double saldoR = Double.parseDouble(saldoRegisto);
+                
+                if(ca.getUsers().containsKey(userRegisto))
+                    System.out.println("Utilizador ja existente. \n");
+                
+                ca.novoUser(userRegisto, passRegisto, nomeRegisto, saldoR);
+                menu_after_leitura();
+                break;
+                
             case 0:
                 limparEcra(3);
                 menu_principal();
@@ -142,9 +161,10 @@ public class Menu {
                 int N2 = this.input.lerInteiro();
                 
                 print_linha("Introduza o Montante que quer apostar");
-                double N3 = this.input.lerDouble();
+                String s = in.next();
+                double N3 = Double.parseDouble(s);
                 
-                print_linha("Introduza o tipo de aposta");
+                print_linha("Introduza o tipo de aposta (1-X-2):");
                 String tipo = this.input.lerString();
                 
                 resultado = ca.apostar(email, N2, N3, tipo);
@@ -156,17 +176,21 @@ public class Menu {
             case 2:
                 limparEcra(3);
                 List<Jogo> res = ca.verJogosDecorrer(); 
-                        for(Jogo j : res){
-                            System.out.println(j.getIdJogo()+" : "+j.getEquipa1()+"-"+j.getEquipa2()+" : "+j.getOddUm()+"-"+j.getOddX()+"-"+j.getOddUm());
-                        }
+                
+                for(Jogo j : res){
+                    System.out.println(j.getIdJogo()+" : "+j.getEquipa1()+"-"+j.getEquipa2()+" : "+j.getOddUm()+"-"+j.getOddX()+"-"+j.getOddUm());
+                }
+                
                 menu_to_user(email);
                 break;
+                
             case 3:
                 limparEcra(3);
                 List<Aposta> res2 = ca.verHistoricoAposta(email); 
-                        for(Aposta a : res2){
-                            System.out.println("Aposta: "+a.getIdAposta()+ " -> Valor Apostado: "+a.getValorApostado()+ "-> Ganho: ");
-                        }
+                
+                for(Aposta a : res2){
+                    System.out.println("Aposta: "+a.getIdAposta()+ " -> Valor Apostado: "+a.getValorApostado()+ "-> Ganho: ");
+                }
                 
                 menu_to_user(email);
                 break;
@@ -174,9 +198,10 @@ public class Menu {
             case 4:
                 limparEcra(3);
                 List<Aposta> res3 = ca.verApostasDecorrer(email); 
-                        for(Aposta a : res3){
-                            System.out.println("Aposta: "+a.getIdAposta()+ " -> Valor Apostado: "+a.getValorApostado());
-                        }
+                
+                for(Aposta a : res3){
+                    System.out.println("Aposta: "+a.getIdAposta()+ " -> Valor Apostado: "+a.getValorApostado());
+                }
                 
                 menu_to_user(email);
                 break;
@@ -210,7 +235,8 @@ public class Menu {
             case 7:
                 limparEcra(3);
                 print_linha("Introduza a quantia que pretende levantar:");
-                double N6 = this.input.lerDouble();
+                String s1 = in.next();
+                double N6 = Double.parseDouble(s1);
                 
                 String resposta2 = ca.depositarBetCoins(email, N6);
                 System.out.println(resposta2);
@@ -220,8 +246,8 @@ public class Menu {
                 
             case 8:
                 limparEcra(3);
-                ca.verMinhasInformacoes(email);
-                
+                String str = ca.verMinhasInformacoes(email);
+                System.out.println(str);
                 menu_to_user(email);
                 break;
             
@@ -370,7 +396,7 @@ public class Menu {
                 List<User> aux3 = ca.listaUsersOn();
                 
                 for(User u: aux3){
-                    u.toString();
+                   System.out.println("User: "+u.getEmail()+":"+u.getNome()+"\n");
                 }
                 
                 menu_to_admin(email);
@@ -380,7 +406,7 @@ public class Menu {
                 List<User> aux4 = ca.listaUsers();
                 
                 for(User u: aux4){
-                    u.toString();
+                    System.out.println("User "+u.getEmail()+":"+u.getNome()+":"+u.getLog()+"\n");
                 }
                 
                 menu_to_admin(email);

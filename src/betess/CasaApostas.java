@@ -199,6 +199,12 @@ public class CasaApostas {
         return ret;
     }
     
+    //metodo para registar novo user
+    public void novoUser(String email, String password, String nome, double saldoInicial){
+        User newUser = new User(email, password, nome, saldoInicial);
+        this.users.put(email, newUser);
+    }
+    
     //metodo apostar
     public String apostar(String email, int id_jogo, double montante, String tipoAposta){
         User userAux = this.users.get(email);
@@ -210,7 +216,7 @@ public class CasaApostas {
         }
         else{
             this.idApostas++;
-            Aposta a=new Aposta(idApostas,true,montante,userAux.getEmail(),jogoAux.clone(),tipoAposta);
+            Aposta a = new Aposta(idApostas, true, montante, userAux.getEmail(), jogoAux.clone(), tipoAposta);
             userAux.apostar(email, this.idApostas, jogoAux, montante, tipoAposta);
             this.apostas.put(idApostas, a);
             aposta = "Aposta concluida.\n";
@@ -380,21 +386,52 @@ public class CasaApostas {
     
     public String terminaJogo(int idJogo, String resultado){
         String res;
+        List<Aposta> auxApostasAtivas = new ArrayList<>();
+        
         if(this.jogos.get(idJogo)!=null){
             res="O jogo que escolheu não existe";
         }
+        
         this.jogos.get(idJogo).setAcabou(true);
+        this.jogos.get(idJogo).setResultado(resultado);
         res = "Jogo terminado com sucesso";
+        
+        for(User u : this.users.values()){
+            for(Aposta a : u.getApostasAtivas()){
+                if(a.getJogo().getIdJogo() == idJogo){
+                    double valor = resultadoAposta(a);
+                    u.setSaldo(u.getSaldo()+valor);
+                    System.out.println("Ganhou "+valor+" na aposta com "+a.getIdAposta()+" e ficou com um total de "+u.getSaldo());
+                }
+                    
+            }
+//            auxApostasAtivas = u.getApostasAtivas();
+//            
+//            for(Aposta a : auxApostasAtivas)
+        }
         return res;
     }
-        
     
-    
+    //método para calcular o resultado das apostas
+    public double resultadoAposta(Aposta a){
+        Jogo j = a.getJogo();
+        double valor = 0.0;
+        if(a.getTipoAposta().equals(j.getResultado())){
+            if(j.getResultado().equals("1")){
+                valor = a.getValorApostado() * j.getOddUm();
+            }
+            else if(j.getResultado().equals("X")){
+                    valor = a.getValorApostado() * j.getOddX();
+                }
+            else if(j.getResultado().equals("2")){
+                valor = a.getValorApostado() * j.getOddDois();
+            }
+        }
+        return valor;
+    }
     
     public CasaApostas clone() {
         return new CasaApostas(this);
     }
-    
-    
-    
+   
 }

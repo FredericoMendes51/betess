@@ -11,22 +11,20 @@ package betess;
  */
 public class Aposta {
     private int idAposta;
-    private boolean estado;
+    private boolean estado; //aberta ou fechado
     private double valorApostado;
     private String userId; 
-    private String resultado; //ganha ou perdida
+//    private String resultado; //1 ou x ou 2
     private Jogo jogo;
     private String tipoAposta;
 
-
-    
     
     public Aposta(){
         this.idAposta=0;
         this.estado=false;
         this.valorApostado=0.0;
         this.userId="";
-        this.resultado="";
+//        this.resultado="";
         this.jogo = new Jogo();
         this.tipoAposta="";
     }
@@ -46,7 +44,7 @@ public class Aposta {
         this.estado=a.isEstado();
         this.valorApostado=a.getValorApostado();
         this.userId=a.getUserId();
-        this.resultado=a.getResultado();
+//        this.resultado=a.getResultado();
         this.jogo=a.getJogo();
         this.tipoAposta=a.getTipoAposta();
     }
@@ -67,15 +65,13 @@ public class Aposta {
         return userId;
     }
 
-    public String getResultado() {
-        return resultado;
-    }
-
+//    public String getResultado() {
+//        return resultado;
+//   }
 
     public Jogo getJogo() {
         return jogo.clone();
     }
-
 
     public String getTipoAposta() {
         return tipoAposta;
@@ -97,16 +93,13 @@ public class Aposta {
         this.userId = userId;
     }
 
-    public void setResultado(String resultado) {
-        this.resultado = resultado;
-    }
-
+//    public void setResultado(String resultado) {
+//        this.resultado = resultado;
+//    }
 
     public void setJogo(Jogo jogo) {
         this.jogo = jogo;
     }
-
-
 
     public void setTipoAposta(String tipoAposta) {
         this.tipoAposta = tipoAposta;
@@ -127,7 +120,5 @@ public class Aposta {
         Aposta e = (Aposta) a;
         return this.idAposta==(e.getIdAposta());
     }
-    
-    
         
 }
