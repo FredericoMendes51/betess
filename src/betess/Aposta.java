@@ -112,10 +112,7 @@ public class Aposta {
         this.tipoAposta = tipoAposta;
     }
 
-    
-
     @Override
-    
     public Aposta clone() {
         return new Aposta(this);
     }
