@@ -8,6 +8,7 @@ package betess;
 import java.io.IOException;
 import static java.util.Collections.list;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  *
@@ -133,6 +134,7 @@ public class Menu {
         int opcao;
         opcao = input.lerInteiro();
          String resultado ="";
+         Scanner in = new Scanner(System.in);
         switch (opcao) {
             case 1:
                 limparEcra(3);
@@ -254,6 +256,7 @@ public class Menu {
         int opcao;
         opcao = input.lerInteiro();
          String resultado ="";
+         Scanner in = new Scanner(System.in);
         switch (opcao) {
             case 1:
                 limparEcra(3);
@@ -264,19 +267,24 @@ public class Menu {
                 String equipa2 = this.input.lerString();
                 
                 print_linha("Introduza a odd para a vitória da equipa da casa");
-                double oddUm = this.input.lerDouble();
+                String odd1 = in.next();
+                double oddUm = Double.parseDouble(odd1);
                 
                 print_linha("Introduza a odd para empate");
-                double oddX = this.input.lerDouble();
+                String oddx = in.next();
+                double oddX = Double.parseDouble(oddx);
                 
                 print_linha("Introduza a odd para vitória da equipa visitante");
-                double oddDois = this.input.lerDouble();
+                String odd2 = in.next();
+                double oddDois = Double.parseDouble(odd2);
                 
                 ca.criaJogo(equipa1, equipa2, oddUm, oddDois, oddX);
                 
                 System.out.println("Jogo inserido com sucesso");
                 
+                menu_to_admin(email);
                 break;
+                
             case 2:
                 limparEcra(3);
                 
@@ -290,20 +298,23 @@ public class Menu {
                 String equipa4 = this.input.lerString();
                 
                 print_linha("Introduza a odd para a vitória da equipa da casa");
-                Float oddUm1 = this.input.lerFloat();
+                String odd11 = in.next();
+                double oddUm1 = Double.parseDouble(odd11);
                 
                 print_linha("Introduza a odd para empate");
-                Float oddXX = this.input.lerFloat();
+                String oddxx = in.next();
+                double oddUXX = Double.parseDouble(oddxx);
                 
                 print_linha("Introduza a odd para vitória da equipa visitante");
-                Float odd2 = this.input.lerFloat();
+                String odd22 = in.next();
+                double oddDois2 = Double.parseDouble(odd22);
                 
-                String edit = ca.editaJogo(idJogo, equipa3, equipa4, oddUm1, oddXX, odd2);
+                String edit = ca.editaJogo(idJogo, equipa3, equipa4, oddUm1, oddUXX, oddDois2);
                 
                 System.out.println(edit);
                 
+                menu_to_admin(email);
                 break;
-                
             case 3:
                 limparEcra(3);
                 
@@ -313,8 +324,9 @@ public class Menu {
                 String remove = ca.eliminaJogo(idJogo1);
                 
                 System.out.println(remove);
+                
+                menu_to_admin(email);
                 break;
-           
             case 4:
                 limparEcra(3);
                 List<Jogo> aux = ca.listaJogosDecorrer();
@@ -322,8 +334,9 @@ public class Menu {
                 for(Jogo j: aux){
                     j.toString();
                 }
-                break;
                 
+                menu_to_admin(email);
+                break;
             case 5:
                 limparEcra(3);
                 List<Jogo> aux2 = ca.listaHistoricoJogos();
@@ -331,8 +344,9 @@ public class Menu {
                 for(Jogo j: aux2){
                     j.toString();
                 }
-                break;
                 
+                menu_to_admin(email);
+                break;
             case 6:
                 limparEcra(3);
                 List<User> aux3 = ca.listaUsersOn();
@@ -340,8 +354,9 @@ public class Menu {
                 for(User u: aux3){
                     u.toString();
                 }
-                break;
                 
+                menu_to_admin(email);
+                break;
             case 7:
                 limparEcra(3);
                 List<User> aux4 = ca.listaUsers();
@@ -349,8 +364,9 @@ public class Menu {
                 for(User u: aux4){
                     u.toString();
                 }
-                break;
                 
+                menu_to_admin(email);
+                break;
             case 8:
                 print_linha("Introduza o Numero do jogo que pretende terminar");
                 int idJogo2 = this.input.lerInteiro();
@@ -364,8 +380,8 @@ public class Menu {
                 }
                 String term = ca.terminaJogo(idJogo2, score);
                 
+                menu_to_admin(email);
                 break;
-                
             case 0:
                 limparEcra(3);
                 menu_principal();

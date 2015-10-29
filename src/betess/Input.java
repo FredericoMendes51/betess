@@ -58,16 +58,17 @@ public class Input {
      boolean ok = false; 
      double d = 0.0; 
      while(!ok) {
-         try {
+//         try {
              d = input.nextDouble();
              ok = true;
-         }
+/*         }
          catch(InputMismatchException e) 
              { out.println("Valor real Inválido"); 
                out.print("Novo valor: ");
                input.nextLine(); 
              }
-     }
+*/
+        }
      input.close();
      return d;
   }  
