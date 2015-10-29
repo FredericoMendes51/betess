@@ -5,6 +5,10 @@
  */
 package betess;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 /**
  *
  * @author fredericomendes
@@ -14,10 +18,12 @@ class Jogo {
     private String equipa1;
     private String equipa2;
     private String resultado; //so é preciso alterar depois de fechar o jogo
-    private double oddUm;
-    private double oddDois;
-    private double oddX;
-    private boolean acabou; //boleano que diz que fechou a aposta
+    private List<Odd> listaOdds;
+    private boolean fechadoParaApostar; //boleano que diz que o jogou ainda tá fechou ou abriu (antes de começar)
+    private boolean acabou; //boolean que diz se um jogo ja começou ou acabou
+    private Date inicioJogo;
+    
+    //falta mudar para arrays odd's
     
     
     public Jogo(){
@@ -25,32 +31,30 @@ class Jogo {
         this.equipa1="";
         this.equipa2="";
         this.resultado="";
-        this.oddUm=0;
-        this.oddDois=0;
-        this.oddX=0;
+        this.listaOdds = new ArrayList<>();
         this.acabou=false;
+        this.fechadoParaApostar = false;
+        this.inicioJogo = new Date();
     }
 
-    public Jogo(int idJogo, String equipa1, String equipa2, double oddUm, double oddDois, double oddX) {
+    public Jogo(int idJogo, String equipa1, String equipa2) {
         this.idJogo = idJogo;
         this.equipa1 = equipa1;
         this.equipa2 = equipa2;
-    //    this.resultado = resultado;
-        this.oddUm = oddUm;
-        this.oddDois = oddDois;
-        this.oddX = oddX;
+        this.listaOdds = new ArrayList<>();
         this.acabou = false;
+        this.fechadoParaApostar = false;
+        this.inicioJogo = new Date();
     }
     
     public Jogo(Jogo j){
         this.idJogo=j.getIdJogo();
         this.equipa1=j.getEquipa1();
         this.equipa2=j.getEquipa2();
+        this.listaOdds = j.getListaOdds();
         this.resultado=j.getResultado();
-        this.oddUm=j.getOddUm();
-        this.oddDois=j.getOddDois();
-        this.oddX=j.getOddX();
-        this.acabou=j.getAcabou();
+        this.fechadoParaApostar = j.getFechadoParaApostar();
+        this.inicioJogo = j.getInicioJogo();
     }
 
     public int getIdJogo() {
@@ -69,22 +73,26 @@ class Jogo {
         return resultado;
     }
 
-    public double getOddUm() {
-        return oddUm;
-    }
-
-    public double getOddDois() {
-        return oddDois;
-    }
-
-    public double getOddX() {
-        return oddX;
-    }
-    
     public boolean getAcabou(){
         return acabou;
     }
+    
+    public boolean getFechadoParaApostar(){
+        return this.fechadoParaApostar;
+    }
 
+    public List<Odd> getListaOdds(){
+        List<Odd> aux = new ArrayList<>();
+        for(Odd o : this.listaOdds)
+            aux.add(o);
+        
+        return aux;
+    }
+    
+    public Date getInicioJogo(){
+        return this.inicioJogo;
+    }
+    
     public void setIdJogo(int idJogo) {
         this.idJogo = idJogo;
     }
@@ -101,22 +109,24 @@ class Jogo {
         this.resultado = resultado;
     }
 
-    public void setOddUm(double oddUm) {
-        this.oddUm = oddUm;
-    }
-
-    public void setOddDois(double oddDois) {
-        this.oddDois = oddDois;
-    }
-
-    public void setOddX(double oddX) {
-        this.oddX = oddX;
-    }
-    
     public void setAcabou(boolean acabou) {
         this.acabou = acabou;
     }
     
+    public void setFechadoParaApostar(boolean fechou){
+        this.fechadoParaApostar = fechou;
+    }
+    
+    public void setListaOdds(List<Odd> lista){
+        this.listaOdds = new ArrayList<>();
+        for(Odd o : lista){
+            this.listaOdds.add(o);
+        }
+    }
+    
+    public void setInicioJogo(Date time){
+        this.inicioJogo = time;
+    }
     
     @Override
     public String toString() {
@@ -126,10 +136,6 @@ class Jogo {
         s.append(this.equipa1).append("e a equipa ");
         s.append(this.equipa2).append(".\n");
         s.append("Neste momento o resultado é:").append(this.resultado);
-        s.append("\n");
-        s.append("Tem como odd para a vitória da equipa da casa: ").append(this.oddUm);
-        s.append(" para o empate: ").append(this.oddX);
-        s.append(" e para a vitória da equipa visitante: ").append(this.oddDois);
         s.append("\n");
         return s.toString();
     }

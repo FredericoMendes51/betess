@@ -19,6 +19,8 @@ public class User {
     private double saldo;
     private List<Aposta> historicoApostas;
     private List<Aposta> apostasAtivas;
+    private List<Aposta> jogosSeguidos;   //jogos que esta a seguir, que nao os ativos
+    private List<String> correio;
     private boolean log;
     
     public User (String email, String pass, String nome, double saldo){
@@ -28,6 +30,8 @@ public class User {
         this.saldo = saldo;
         this.historicoApostas = new ArrayList<>();
         this.apostasAtivas = new ArrayList<>();
+        this.correio = new ArrayList<>();
+        this.log = false;
     }
     
     public User (User u){
@@ -37,6 +41,8 @@ public class User {
         this.saldo = u.getSaldo();
         this.historicoApostas = u.getHistoricoApostas();
         this.apostasAtivas = u.getApostasAtivas();
+        this.correio = u.getCorreio();
+        this.log = u.getLog();
     }
     
     public String getEmail(){
@@ -53,6 +59,14 @@ public class User {
     
     public double getSaldo(){
         return this.saldo;
+    }
+    
+    public List<String> getCorreio(){
+        List<String> aux = new ArrayList<>();
+        for(String s : this.correio)
+            aux.add(s);
+        
+        return aux;
     }
     
     public Boolean getLog(){
@@ -99,20 +113,17 @@ public class User {
         this.log = log;
     }
     
-    
-    
     public void setSaldo(double saldo){
         this.saldo = saldo;
     }
     
-    
-    //metodos
     
     //metodo apostar
     public void apostar(String email, int id_aposta, Jogo id_jogo, double montante, String tipoAposta){
        Aposta apostaAux = new Aposta(id_aposta, true, montante, email, id_jogo, tipoAposta); 
        this.apostasAtivas.add(apostaAux);
        this.setSaldo(this.getSaldo()-montante);
+       
     }
     
     //metodo para retirar aposta
