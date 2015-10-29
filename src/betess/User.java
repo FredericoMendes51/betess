@@ -166,8 +166,9 @@ public class User {
         return str.toString();
     }
     
-    public void alterarPassword(String newPassword){
+    public String alterarPassword(String newPassword){
         this.setPassword(newPassword);
+        return "Password alterada com sucesso!\n";
     }
     
     

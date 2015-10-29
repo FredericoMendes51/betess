@@ -257,8 +257,9 @@ public class Menu {
                 print_linha("Introduza a nova password que pretende inserir:");
                 String passNova = this.input.lerString();
                 
-                ca.alterarPassword(email,passNova);
+                String alteraPass = ca.alterarPassword(email,passNova);
                 
+                System.out.println(alteraPass);
                 menu_to_user(email);
                 break;
                 

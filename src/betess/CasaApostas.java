@@ -307,12 +307,15 @@ public class CasaApostas {
     }
     
     //metodo para fazer mudar a password
-    public void alterarPassword(String email, String pass){
+    public String alterarPassword(String email, String pass){
+        String s = null;
         for(User u : this.users.values()){
             if(u.getEmail().equals(email)){
-                u.alterarPassword(pass);
+                s = u.alterarPassword(pass);
             }
         }
+        
+        return s;
             
     }
     
