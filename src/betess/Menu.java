@@ -151,6 +151,7 @@ public class Menu {
                 
                 System.out.println(resultado + "\n");
                 
+                menu_to_user(email);
                 break;
             case 2:
                 limparEcra(3);
@@ -158,14 +159,17 @@ public class Menu {
                         for(Jogo j : res){
                             System.out.println(j.getIdJogo()+" : "+j.getEquipa1()+"-"+j.getEquipa2()+" : "+j.getOddUm()+"-"+j.getOddX()+"-"+j.getOddUm());
                         }
-                        break;
+                menu_to_user(email);
+                break;
             case 3:
                 limparEcra(3);
                 List<Aposta> res2 = ca.verHistoricoAposta(email); 
                         for(Aposta a : res2){
                             System.out.println("Aposta: "+a.getIdAposta()+ " -> Valor Apostado: "+a.getValorApostado()+ "-> Ganho: ");
                         }
-            break;
+                
+                menu_to_user(email);
+                break;
             
             case 4:
                 limparEcra(3);
@@ -173,7 +177,9 @@ public class Menu {
                         for(Aposta a : res3){
                             System.out.println("Aposta: "+a.getIdAposta()+ " -> Valor Apostado: "+a.getValorApostado());
                         }
-            break;
+                
+                menu_to_user(email);
+                break;
             
             case 5:
                 limparEcra(3);
@@ -184,6 +190,8 @@ public class Menu {
                 String resposta = ca.retirarAposta(email,N4); 
                         
                 System.out.println(resposta);
+                
+                menu_to_user(email);
                 break;
                 
             case 6:
@@ -194,6 +202,8 @@ public class Menu {
                 String cenas =ca.depositarBetCoins(email, N5);
                 System.out.println(cenas);
                 
+                
+                menu_to_user(email);
                 break;
                 
                 
@@ -204,11 +214,15 @@ public class Menu {
                 
                 String resposta2 = ca.depositarBetCoins(email, N6);
                 System.out.println(resposta2);
+                
+                menu_to_user(email);
                 break;
                 
             case 8:
                 limparEcra(3);
                 ca.verMinhasInformacoes(email);
+                
+                menu_to_user(email);
                 break;
             
             case 9:
@@ -218,6 +232,8 @@ public class Menu {
                 String passNova = this.input.lerString();
                 
                 ca.alterarPassword(email,passNova);
+                
+                menu_to_user(email);
                 break;
                 
             case 0:
@@ -237,19 +253,17 @@ public class Menu {
         System.out.println("\t\t\t\t--------------------------------");
         System.out.println("\t\t\t\t2 - Editar Jogo");
         System.out.println("\t\t\t\t--------------------------------");
-        System.out.println("\t\t\t\t3 - Listar histórico de apostas");
+        System.out.println("\t\t\t\t3 - Eliminar Jogo");
         System.out.println("\t\t\t\t--------------------------------");
-        System.out.println("\t\t\t\t4 - Listar apostas a decorrer");
+        System.out.println("\t\t\t\t4 - Listar Jogos a Decorrer");
         System.out.println("\t\t\t\t--------------------------------");
-        System.out.println("\t\t\t\t5 - Retirar Aposta");
+        System.out.println("\t\t\t\t5 - Listar Histórico de Jogos");
         System.out.println("\t\t\t\t--------------------------------");
-        System.out.println("\t\t\t\t6 - Depositar dinheiro");
+        System.out.println("\t\t\t\t6 - Listar Utilizadores Online");
         System.out.println("\t\t\t\t--------------------------------");
-        System.out.println("\t\t\t\t7 - Levantar dinheiro");
+        System.out.println("\t\t\t\t7 - Listar Todos os Users");
         System.out.println("\t\t\t\t--------------------------------");
-        System.out.println("\t\t\t\t8 - Ver o meu perfil");
-        System.out.println("\t\t\t\t--------------------------------");
-        System.out.println("\t\t\t\t9 - Mudar a password");
+        System.out.println("\t\t\t\t8 - Terminar Jogo");
         System.out.println("\t\t\t\t--------------------------------");
         System.out.println("\t\t\t\t0 - Voltar");
         System.out.println("\t\t\t\t--------------------------------");
@@ -331,8 +345,10 @@ public class Menu {
                 limparEcra(3);
                 List<Jogo> aux = ca.listaJogosDecorrer();
                 
+                System.out.println("LISTA DE JOGOS A DECORRER\n");
+                
                 for(Jogo j: aux){
-                    j.toString();
+                    System.out.println("Jogo: "+j.getIdJogo()+":"+j.getEquipa1()+"-"+j.getEquipa2()+":"+j.getOddUm()+"-"+j.getOddX()+"-"+j.getOddDois()+"\n");
                 }
                 
                 menu_to_admin(email);
@@ -341,8 +357,10 @@ public class Menu {
                 limparEcra(3);
                 List<Jogo> aux2 = ca.listaHistoricoJogos();
                 
+                System.out.println("HISTÒRICO DE JOGOS\n");
+                
                 for(Jogo j: aux2){
-                    j.toString();
+                    System.out.println("Jogo: "+j.getIdJogo()+":"+j.getEquipa1()+"-"+j.getEquipa2()+":"+j.getOddUm()+"-"+j.getOddX()+"-"+j.getOddDois()+":"+j.getResultado()+"\n");
                 }
                 
                 menu_to_admin(email);

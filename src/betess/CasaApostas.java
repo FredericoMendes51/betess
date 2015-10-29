@@ -85,7 +85,20 @@ public class CasaApostas {
         
         //Jogos
         Jogo jogo1 = new Jogo(0, "Sporting","Braga", 1.32, 8.0, 4.0);
+        Jogo jogo2 = new Jogo(1, "Benfica","Sporting", 3.2, 1.5, 4.0);
+        Jogo jogo3 = new Jogo(2, "Porto","Guimarães", 1.4, 5.0, 3.5);
+        Jogo jogo4 = new Jogo(3, "Porto","Braga", 2.1, 4.0, 3.2);
+        Jogo jogo5 = new Jogo(4, "Benfica","Olhanense", 1.32, 5.0, 4.0);
+        Jogo jogo6 = new Jogo(5, "Prado","Merelim", 4.0, 4.0, 2.0);
+        Jogo jogo7 = new Jogo(6, "Portugal","Sérvia", 1.32, 8.0, 4.0);
+        
         this.jogos.put(jogo1.getIdJogo(), jogo1);
+        this.jogos.put(jogo2.getIdJogo(), jogo2);
+        this.jogos.put(jogo3.getIdJogo(), jogo3);
+        this.jogos.put(jogo4.getIdJogo(), jogo4);
+        this.jogos.put(jogo5.getIdJogo(), jogo5);
+        this.jogos.put(jogo6.getIdJogo(), jogo6);
+        this.jogos.put(jogo7.getIdJogo(), jogo7);
     }
     
     
