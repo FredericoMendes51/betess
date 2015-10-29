@@ -16,13 +16,26 @@ public class Admin {
     private int idAdmin;
     private String username;
     private String password;
+    private List<Jogo> jogosCriados;
+    private List<Jogo> jogosSeguidos;
     private boolean log;
+    
+    
+    public Admin(){
+        this.idAdmin = 0;
+        this.username = null;
+        this.password = null;
+        this.jogosCriados = new ArrayList<>();
+        this.jogosSeguidos = new ArrayList<>();
+        this.log = false;
+    }
     
     public Admin(int idAdmin, String username, String password){
         this.idAdmin = idAdmin;
         this.username = username;
         this.password = password;
-    //    this.log=log;
+        this.jogosCriados = new ArrayList<>();
+        this.jogosSeguidos = new ArrayList<>();
     }
     
     public Admin(Admin a){
@@ -30,7 +43,10 @@ public class Admin {
         this.username = a.getUsername();
         this.password = a.getPassword();
         this.log = a.getLog();
+        this.jogosCriados = a.getJogosCriados();
+        this.jogosSeguidos = a.getJogosSeguidos();
     }
+    
     
     //get's
     public int getIdAdmin(){
@@ -43,6 +59,22 @@ public class Admin {
     
     public String getPassword(){
         return this.password;
+    }
+    
+    public List<Jogo> getJogosCriados(){
+        List<Jogo> aux = new ArrayList<>();
+        for(Jogo g : this.jogosCriados)
+            aux.add(g);
+        
+        return aux;
+    }
+    
+    public List<Jogo> getJogosSeguidos(){
+        List<Jogo> aux = new ArrayList<>();
+        for(Jogo g : this.jogosSeguidos)
+            aux.add(g);
+        
+        return aux;
     }
    
     public Boolean getLog(){
@@ -60,6 +92,20 @@ public class Admin {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+    
+    public void setJogosCriados(List<Jogo> criados){
+        this.jogosCriados = new ArrayList<>();
+        for(Jogo j : criados)
+            this.jogosCriados.add(j);
+        
+    }
+    
+    public void setJogosSeguidos(List<Jogo> seguidos){
+        this.jogosSeguidos = new ArrayList<>();
+        for(Jogo j : seguidos)
+            this.jogosSeguidos.add(j);
+        
     }
 
     public void setLog(boolean log) {
