@@ -19,8 +19,8 @@ public class User {
     private double saldo;
     private List<Aposta> historicoApostas;
     private List<Aposta> apostasAtivas;
-    private List<Aposta> jogosSeguidos;   //jogos que esta a seguir, que nao os ativos
-    private List<String> correio;
+    private List<Jogo> jogosSeguidos;   //jogos que esta a seguir, que nao os ativos
+    private List<Notificacao> notificacoes;
     private boolean log;
     
     public User (String email, String pass, String nome, double saldo){
@@ -30,7 +30,8 @@ public class User {
         this.saldo = saldo;
         this.historicoApostas = new ArrayList<>();
         this.apostasAtivas = new ArrayList<>();
-        this.correio = new ArrayList<>();
+        this.jogosSeguidos = new ArrayList<>();
+        this.notificacoes = new ArrayList<>();
         this.log = false;
     }
     
@@ -41,7 +42,8 @@ public class User {
         this.saldo = u.getSaldo();
         this.historicoApostas = u.getHistoricoApostas();
         this.apostasAtivas = u.getApostasAtivas();
-        this.correio = u.getCorreio();
+        this.jogosSeguidos = u.getJogosSeguidos();
+        this.notificacoes = u.getNotificacoes();
         this.log = u.getLog();
     }
     
@@ -61,9 +63,9 @@ public class User {
         return this.saldo;
     }
     
-    public List<String> getCorreio(){
-        List<String> aux = new ArrayList<>();
-        for(String s : this.correio)
+    public List<Notificacao> getNotificacoes(){
+        List<Notificacao> aux = new ArrayList<>();
+        for(Notificacao s : this.notificacoes)
             aux.add(s);
         
         return aux;
@@ -88,6 +90,16 @@ public class User {
         
         return aux;
     }
+    
+    public List<Jogo> getJogosSeguidos(){
+        List<Jogo> aux = new ArrayList<>();
+        for(Jogo g : this.jogosSeguidos)
+            aux.add(g);
+        
+        return aux;
+    }
+    
+    
 
     public void setEmail(String email) {
         this.email = email;
@@ -117,19 +129,30 @@ public class User {
         this.saldo = saldo;
     }
     
+    public void setNotificacoes(List<Notificacao> not){
+        this.notificacoes = new ArrayList<>();
+        for(Notificacao n : not)
+            this.notificacoes.add(n);
+    }
+    
+    public void setJogosSeguidos(List<Jogo> jogos){
+        this.jogosSeguidos = new ArrayList<>();
+        for(Jogo j : jogos)
+            this.jogosSeguidos.add(j);
+    }
+    
     
     //metodo apostar
-    public void apostar(String email, int id_aposta, Jogo id_jogo, double montante, String tipoAposta){
-       Aposta apostaAux = new Aposta(id_aposta, true, montante, email, id_jogo, tipoAposta); 
+    public void apostar(String email, int id_aposta, Jogo id_jogo, double montante, String tipoAposta, double oddAposta){
+       Aposta apostaAux = new Aposta(id_aposta, true, montante, email, id_jogo, tipoAposta, oddAposta); 
        this.apostasAtivas.add(apostaAux);
-       this.setSaldo(this.getSaldo()-montante);
-       
+       this.setSaldo(this.getSaldo()-montante);  
     }
     
     //metodo para retirar aposta
     public String retirarAposta(Aposta a){
         String ret = null;
-        if(a.getJogo().getAcabou() == true){
+        if(a.getJogo().getFechadoParaApostar() == true){
             ret = "Já não dá para retirar aposta.\n";
         }
         else{
@@ -167,7 +190,7 @@ public class User {
         return ret;
     }
     
-    
+    //metodo para ver as informaçoes do utilizador
     public String verMinhasInformacoes(){
         StringBuilder str =  new StringBuilder();
         str.append("Email: ").append(this.getEmail()).append("\n");
@@ -177,6 +200,7 @@ public class User {
         return str.toString();
     }
     
+    //metodo para o utitlizador ver as suas informacoes
     public String alterarPassword(String newPassword){
         this.setPassword(newPassword);
         return "Password alterada com sucesso!\n";
