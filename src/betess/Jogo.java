@@ -45,6 +45,7 @@ class Jogo {
         this.acabou = false;
         this.fechadoParaApostar = false;
         this.inicioJogo = new Date();
+        this.resultado=null;
     }
     
     public Jogo(Jogo j){
@@ -126,6 +127,14 @@ class Jogo {
     
     public void setInicioJogo(Date time){
         this.inicioJogo = time;
+    }
+    
+    //metodo que adiciona odd's
+    public void adicionaOdds(double odd1, double oddx, double odd2){
+        Date now = new Date();
+        
+        Odd newOdd = new Odd(odd1, oddx, odd2, now);
+        this.listaOdds.add(newOdd);
     }
     
     @Override

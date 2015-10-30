@@ -6,6 +6,7 @@
 package betess;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,7 +27,7 @@ public class CasaApostas {
     
     public CasaApostas(){
         this.idApostas = 0;
-        this.idJogo = 0;
+        this.idJogo = 1;
         this.apostas = new HashMap<>();
         this.users = new HashMap<>();
         this.admins = new HashMap<>();
@@ -84,21 +85,36 @@ public class CasaApostas {
         this.users.put(user2.getEmail(), user2);
         
         //Jogos
-        Jogo jogo1 = new Jogo(0, "Sporting","Braga", 1.32, 8.0, 4.0);
-        Jogo jogo2 = new Jogo(1, "Benfica","Sporting", 3.2, 1.5, 4.0);
-        Jogo jogo3 = new Jogo(2, "Porto","Guimarães", 1.4, 5.0, 3.5);
-        Jogo jogo4 = new Jogo(3, "Porto","Braga", 2.1, 4.0, 3.2);
-        Jogo jogo5 = new Jogo(4, "Benfica","Olhanense", 1.32, 5.0, 4.0);
-        Jogo jogo6 = new Jogo(5, "Prado","Merelim", 4.0, 4.0, 2.0);
-        Jogo jogo7 = new Jogo(6, "Portugal","Sérvia", 1.32, 8.0, 4.0);
         
-        this.jogos.put(jogo1.getIdJogo(), jogo1);
-        this.jogos.put(jogo2.getIdJogo(), jogo2);
-        this.jogos.put(jogo3.getIdJogo(), jogo3);
-        this.jogos.put(jogo4.getIdJogo(), jogo4);
-        this.jogos.put(jogo5.getIdJogo(), jogo5);
-        this.jogos.put(jogo6.getIdJogo(), jogo6);
-        this.jogos.put(jogo7.getIdJogo(), jogo7);
+//        Jogo jogo1 = new Jogo(0, "Sporting","Braga");
+        Odd o1 = new Odd(1.32, 4.0, 8.0, new Date());
+        criaJogo("Sporting","Braga", o1);
+//        Jogo jogo2 = new Jogo(1, "Benfica","Sporting");
+        Odd o2 = new Odd(3.2, 4.0, 1.5, new Date());
+        criaJogo("Benfica","Sporting", o2);
+//        Jogo jogo3 = new Jogo(2, "Porto","Guimarães");
+        Odd o3 = new Odd(1.4, 3.5, 5.0, new Date());
+        criaJogo("Porto","Guimarães", o3);
+//        Jogo jogo4 = new Jogo(3, "Porto","Braga");
+        Odd o4 = new Odd(2.1, 3.2, 4.0, new Date());
+        criaJogo("Porto","Braga", o4);
+//        Jogo jogo5 = new Jogo(4, "Benfica","Olhanense");
+        Odd o5 = new Odd(1.32, 4.0, 5.0, new Date());
+        criaJogo("Benfica","Olhanense", o5);
+//        Jogo jogo6 = new Jogo(5, "Prado","Merelim");
+        Odd o6 = new Odd(4.0, 2.0, 4.0, new Date());
+        criaJogo("Prado","Merelim", o6);
+//        Jogo jogo7 = new Jogo(6, "Portugal","Sérvia");
+        Odd o7 = new Odd(1.32, 4.0,  8.0, new Date());
+        criaJogo("Portugal","Sérvia", o7);
+//        
+//        this.jogos.put(jogo1.getIdJogo(), jogo1);
+//        this.jogos.put(jogo2.getIdJogo(), jogo2);
+//        this.jogos.put(jogo3.getIdJogo(), jogo3);
+//        this.jogos.put(jogo4.getIdJogo(), jogo4);
+//        this.jogos.put(jogo5.getIdJogo(), jogo5);
+//        this.jogos.put(jogo6.getIdJogo(), jogo6);
+//        this.jogos.put(jogo7.getIdJogo(), jogo7);
     }
     
     
@@ -209,6 +225,7 @@ public class CasaApostas {
     public String apostar(String email, int id_jogo, double montante, String tipoAposta){
         User userAux = this.users.get(email);
         Jogo jogoAux = this.jogos.get(id_jogo);
+        double odd = 0.0;
         String aposta = null;
         
         if(userAux.getSaldo() < montante){
@@ -216,8 +233,16 @@ public class CasaApostas {
         }
         else{
             this.idApostas++;
-            Aposta a = new Aposta(idApostas, true, montante, userAux.getEmail(), jogoAux.clone(), tipoAposta);
-            userAux.apostar(email, this.idApostas, jogoAux, montante, tipoAposta);
+            
+            if(tipoAposta.equals("1"))
+                odd = jogoAux.getListaOdds().get(jogoAux.getListaOdds().size()-1).getOddUm();
+            else if(tipoAposta.equals("x") || tipoAposta.equals("X"))
+                odd = jogoAux.getListaOdds().get(jogoAux.getListaOdds().size()-1).getOddX();
+            else if(tipoAposta.equals("2"))
+                odd = jogoAux.getListaOdds().get(jogoAux.getListaOdds().size()-1).getOddDois();
+            
+            Aposta a = new Aposta(idApostas, true, montante, userAux.getEmail(), jogoAux.clone(), tipoAposta, odd);
+            userAux.apostar(email, this.idApostas, jogoAux, montante, tipoAposta, odd);
             this.apostas.put(idApostas, a);
             aposta = "Aposta concluida.\n";
         }
@@ -321,22 +346,21 @@ public class CasaApostas {
     
     //metodo para adicionar um jogo
     
-    public void criaJogo(String equipa1, String equipa2, double oddUm,double odd2, double oddX){
-        this.idJogo++;
-        Jogo j = new Jogo(idJogo, equipa1, equipa2, oddUm, odd2, oddX );
+    public void criaJogo(String equipa1, String equipa2, Odd odd){
+        
+        Jogo j = new Jogo(this.idJogo, equipa1, equipa2);
+        j.getListaOdds().add(odd);
         this.jogos.put(idJogo, j);
+        this.idJogo++;
     }
     
-    public String editaJogo(int idJogo, String equipa1, String equipa2, double oddUm,double odd2, double oddX){
+    public String editaJogo(int idJogo, Odd odd){
         String res;
         if(this.jogos.get(idJogo)!=null){
             res="O jogo que escolheu não existe";
         }
-       this.jogos.get(idJogo).setEquipa1(equipa1);
-       this.jogos.get(idJogo).setEquipa2(equipa2);
-       this.jogos.get(idJogo).setOddDois(odd2);
-       this.jogos.get(idJogo).setOddUm(oddUm);
-       this.jogos.get(idJogo).setOddX(oddX);
+       this.jogos.get(idJogo).getListaOdds().add(odd);
+        
        res="Jogo editado com sucesso!!";
        return res;
     }
@@ -354,7 +378,7 @@ public class CasaApostas {
     public List<Jogo> listaJogosDecorrer(){
         List<Jogo> aux = new ArrayList<>();
         for(Jogo j :this.jogos.values()){
-            if(!j.getAcabou()){
+            if(j.getAcabou() == false){
                 aux.add(j);
             }
         }
@@ -419,17 +443,10 @@ public class CasaApostas {
     public double resultadoAposta(Aposta a){
         Jogo j = a.getJogo();
         double valor = 0.0;
-        if(a.getTipoAposta().equals(j.getResultado())){
-            if(j.getResultado().equals("1")){
-                valor = a.getValorApostado() * j.getOddUm();
-            }
-            else if(j.getResultado().equals("X")){
-                    valor = a.getValorApostado() * j.getOddX();
-                }
-            else if(j.getResultado().equals("2")){
-                valor = a.getValorApostado() * j.getOddDois();
-            }
+        if(a.getTipoAposta().equals(a.getResultado())){
+            valor = a.getValorApostado() * a.getOddAposta();
         }
+        
         return valor;
     }
     

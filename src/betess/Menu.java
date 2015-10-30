@@ -7,6 +7,7 @@ package betess;
 
 import java.io.IOException;
 import static java.util.Collections.list;
+import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
@@ -178,7 +179,7 @@ public class Menu {
                 List<Jogo> res = ca.verJogosDecorrer(); 
                 
                 for(Jogo j : res){
-                    System.out.println(j.getIdJogo()+" : "+j.getEquipa1()+"-"+j.getEquipa2()+" : "+j.getOddUm()+"-"+j.getOddX()+"-"+j.getOddUm());
+                    System.out.println(j.getIdJogo()+" : "+j.getEquipa1()+"-"+j.getEquipa2()+" : "+j.getListaOdds().get(j.getListaOdds().size()-1).getOddUm()+"-"+j.getListaOdds().get(j.getListaOdds().size()-1).getOddX()+"-"+j.getListaOdds().get(j.getListaOdds().size()-1).getOddUm());
                 }
                 
                 menu_to_user(email);
@@ -319,7 +320,8 @@ public class Menu {
                 String odd2 = in.next();
                 double oddDois = Double.parseDouble(odd2);
                 
-                ca.criaJogo(equipa1, equipa2, oddUm, oddDois, oddX);
+                Odd odd = new Odd(oddUm, oddX, oddDois, new Date());
+                ca.criaJogo(equipa1, equipa2, odd);
                 
                 System.out.println("Jogo inserido com sucesso");
                 
@@ -331,12 +333,6 @@ public class Menu {
                 
                 print_linha("Introduza o Numero do jogo que pretende editar");
                 int idJogo = this.input.lerInteiro();
-                
-                print_linha("Introduza o Nome da equipa que joga em casa");
-                String equipa3 = this.input.lerString();
-                
-                print_linha("Introduza o Nome da equipa que joga como visitante");
-                String equipa4 = this.input.lerString();
                 
                 print_linha("Introduza a odd para a vitória da equipa da casa");
                 String odd11 = in.next();
@@ -350,7 +346,9 @@ public class Menu {
                 String odd22 = in.next();
                 double oddDois2 = Double.parseDouble(odd22);
                 
-                String edit = ca.editaJogo(idJogo, equipa3, equipa4, oddUm1, oddUXX, oddDois2);
+                Odd o1 = new Odd(oddUm1, oddUXX, oddDois2, new Date());
+                
+                String edit = ca.editaJogo(idJogo, o1);
                 
                 System.out.println(edit);
                 
@@ -375,7 +373,9 @@ public class Menu {
                 System.out.println("LISTA DE JOGOS A DECORRER\n");
                 
                 for(Jogo j: aux){
-                    System.out.println("Jogo: "+j.getIdJogo()+":"+j.getEquipa1()+"-"+j.getEquipa2()+":"+j.getOddUm()+"-"+j.getOddX()+"-"+j.getOddDois()+"\n");
+                    int size = j.getListaOdds().size();
+                    System.out.print("SIZE "+size+"\n");
+                    System.out.println("Jogo: "+j.getIdJogo()+":"+j.getEquipa1()+"-"+j.getEquipa2()+":"+j.getListaOdds().get(size-1).getOddUm()+"-"+j.getListaOdds().get(size-1).getOddX()+"-"+j.getListaOdds().get(size-1).getOddDois()+"\n");
                 }
                 
                 menu_to_admin(email);
@@ -387,7 +387,7 @@ public class Menu {
                 System.out.println("HISTÒRICO DE JOGOS\n");
                 
                 for(Jogo j: aux2){
-                    System.out.println("Jogo: "+j.getIdJogo()+":"+j.getEquipa1()+"-"+j.getEquipa2()+":"+j.getOddUm()+"-"+j.getOddX()+"-"+j.getOddDois()+":"+j.getResultado()+"\n");
+                    System.out.println("Jogo: "+j.getIdJogo()+":"+j.getEquipa1()+"-"+j.getEquipa2()+":"+j.getListaOdds().get(j.getListaOdds().size()-1).getOddUm()+"-"+j.getListaOdds().get(j.getListaOdds().size()-1).getOddX()+"-"+j.getListaOdds().get(j.getListaOdds().size()-1).getOddDois()+":"+j.getResultado()+"\n");
                 }
                 
                 menu_to_admin(email);
