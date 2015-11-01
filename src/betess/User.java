@@ -206,11 +206,17 @@ public class User {
         return "Password alterada com sucesso!\n";
     }
     
+    //metodo em que o jogo terminou
+    public void terminaJogo(int idJogo, String result){
+        
+    }
     
 
     @Override
     public String toString() {
-        return "User:" + "email=" + email + '.';
+        StringBuilder sb = new StringBuilder();
+        sb.append("User: ").append(this.email).append(" - ").append(this.nome).append("\n");
+        return sb.toString();
     }
     
     @Override

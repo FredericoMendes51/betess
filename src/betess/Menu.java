@@ -176,11 +176,17 @@ public class Menu {
                 break;
             case 2:
                 limparEcra(3);
-                List<Jogo> res = ca.verJogosDecorrer(); 
+                List<Jogo> aux = ca.listaJogosDecorrer();
                 
-                for(Jogo j : res){
-                    System.out.println(j.getIdJogo()+" : "+j.getEquipa1()+"-"+j.getEquipa2()+" : "+j.getListaOdds().get(j.getListaOdds().size()-1).getOddUm()+"-"+j.getListaOdds().get(j.getListaOdds().size()-1).getOddX()+"-"+j.getListaOdds().get(j.getListaOdds().size()-1).getOddUm());
+                if(aux.size() > 0){
+                    System.out.println("LISTA DE JOGOS A DECORRER\n");
+                
+                    for(Jogo j: aux){
+                        System.out.println(j.toString());
+                    }
                 }
+            
+                else System.out.println("Não há jogos a decorrer!");
                 
                 menu_to_user(email);
                 break;
@@ -190,7 +196,7 @@ public class Menu {
                 List<Aposta> res2 = ca.verHistoricoAposta(email); 
                 
                 for(Aposta a : res2){
-                    System.out.println("Aposta: "+a.getIdAposta()+ " -> Valor Apostado: "+a.getValorApostado()+ "-> Ganho: ");
+                    System.out.println(a.toString());
                 }
                 
                 menu_to_user(email);
@@ -320,8 +326,8 @@ public class Menu {
                 String odd2 = in.next();
                 double oddDois = Double.parseDouble(odd2);
                 
-                Odd odd = new Odd(oddUm, oddX, oddDois, new Date());
-                ca.criaJogo(equipa1, equipa2, odd);
+                
+                ca.criaJogo(equipa1, equipa2, oddUm, oddX, oddDois, new Date());
                 
                 System.out.println("Jogo inserido com sucesso");
                 
@@ -370,13 +376,14 @@ public class Menu {
                 limparEcra(3);
                 List<Jogo> aux = ca.listaJogosDecorrer();
                 
-                System.out.println("LISTA DE JOGOS A DECORRER\n");
+                if(aux.size() > 0){
+                    System.out.println("LISTA DE JOGOS A DECORRER\n");
                 
-                for(Jogo j: aux){
-                    int size = j.getListaOdds().size();
-                    System.out.print("SIZE "+size+"\n");
-                    System.out.println("Jogo: "+j.getIdJogo()+":"+j.getEquipa1()+"-"+j.getEquipa2()+":"+j.getListaOdds().get(size-1).getOddUm()+"-"+j.getListaOdds().get(size-1).getOddX()+"-"+j.getListaOdds().get(size-1).getOddDois()+"\n");
+                    for(Jogo j: aux){
+                        System.out.println(j.toString());
+                    }
                 }
+                else System.out.println("Não há jogos a decorrer!");
                 
                 menu_to_admin(email);
                 break;
@@ -384,31 +391,43 @@ public class Menu {
                 limparEcra(3);
                 List<Jogo> aux2 = ca.listaHistoricoJogos();
                 
-                System.out.println("HISTÒRICO DE JOGOS\n");
-                
-                for(Jogo j: aux2){
-                    System.out.println("Jogo: "+j.getIdJogo()+":"+j.getEquipa1()+"-"+j.getEquipa2()+":"+j.getListaOdds().get(j.getListaOdds().size()-1).getOddUm()+"-"+j.getListaOdds().get(j.getListaOdds().size()-1).getOddX()+"-"+j.getListaOdds().get(j.getListaOdds().size()-1).getOddDois()+":"+j.getResultado()+"\n");
+                if(aux2.size() > 0){
+                    System.out.println("HISTÒRICO DE JOGOS\n");
+
+                    for(Jogo j: aux2){
+                        System.out.println(j.toString() + "-"+j.getResultado());
+                    
+                    }
                 }
+                else System.out.println("Não há jogos no histórico!");
                 
                 menu_to_admin(email);
                 break;
             case 6:
                 limparEcra(3);
                 List<User> aux3 = ca.listaUsersOn();
-                
-                for(User u: aux3){
-                   System.out.println("User: "+u.getEmail()+":"+u.getNome()+"\n");
+                if(aux3.size() > 0){
+                    System.out.println("Lista de Users Ligados:\n");
+                    for(User u: aux3){
+                       System.out.println(u.toString());
+                    }
                 }
+                else
+                    System.out.println("Não Há Users Ligados!");
                 
                 menu_to_admin(email);
                 break;
             case 7:
                 limparEcra(3);
                 List<User> aux4 = ca.listaUsers();
-                
-                for(User u: aux4){
-                    System.out.println("User "+u.getEmail()+":"+u.getNome()+":"+u.getLog()+"\n");
+                if(aux4.size() > 0){
+                    System.out.println("Lista de Users:\n");
+                    for(User u: aux4){
+                        System.out.println("User "+u.getEmail()+":"+u.getNome()+":"+u.getLog()+"\n");
+                    }
                 }
+                else
+                    System.out.println("Lista de Users Vazia");
                 
                 menu_to_admin(email);
                 break;
@@ -419,7 +438,7 @@ public class Menu {
                 print_linha("Introduza o resultado do jogo (1 em caso de vitoria da equipa da casa, 2 em caso de vitória da equipa visitanta, x em caso de empate");
                 String score = this.input.lerString();
                 
-                while(!(score.equals("1")|(score.equals("x"))|(score.equals("2")))){
+                while(!(score.equals("1")|(score.equals("x"))|(score.equals("X"))|(score.equals("2")))){
                     print_linha("Introduza o resultado do jogo (1 em caso de vitoria da equipa da casa, 2 em caso de vitória da equipa visitanta, x em caso de empate");
                     score = this.input.lerString();
                 }

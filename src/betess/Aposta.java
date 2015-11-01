@@ -13,7 +13,6 @@ public class Aposta {
     private int idAposta;
     private boolean estado; //aberta ou fechado - fecha quando o jogo começa
     private double valorApostado;
-//    private String userId; 
     private String resultado; //1 ou x ou 2
     private Jogo jogo;
     private String tipoAposta;
@@ -24,7 +23,6 @@ public class Aposta {
         this.idAposta=0;
         this.estado=false;
         this.valorApostado=0.0;
-//        this.userId="";
         this.resultado = null;
         this.jogo = new Jogo();
         this.tipoAposta = null;
@@ -35,7 +33,6 @@ public class Aposta {
         this.idAposta = idAposta;
         this.estado = estado;
         this.valorApostado = valorApostado;
-//        this.userId = userId;
         this.resultado = null;
         this.jogo = jogo;
         this.tipoAposta = tipoAposta;
@@ -46,7 +43,6 @@ public class Aposta {
         this.idAposta=a.getIdAposta();
         this.estado=a.getEstado();
         this.valorApostado=a.getValorApostado();
-//        this.userId=a.getUserId();
         this.resultado=a.getResultado();
         this.jogo=a.getJogo();
         this.tipoAposta=a.getTipoAposta();
@@ -65,9 +61,6 @@ public class Aposta {
         return valorApostado;
     }
 
-//    public String getUserId() {
-//        return userId;
-//    }
 
     public String getResultado() {
         return resultado;
@@ -97,10 +90,6 @@ public class Aposta {
         this.valorApostado = valorApostado;
     }
 
-//    public void setUserId(String userId) {
-//        this.userId = userId;
-//    }
-
     public void setResultado(String resultado) {
         this.resultado = resultado;
     }
@@ -115,6 +104,12 @@ public class Aposta {
     
     public void setOddAposta(double odd){
         this.oddAposta = odd;
+    }
+    
+    public String toString(){
+        StringBuilder s = new StringBuilder();
+        s.append("Aposta: ").append(this.getIdAposta()).append(":").append(this.getTipoAposta()).append(":").append(this.getValorApostado()).append("\n");
+        return s.toString();
     }
 
     @Override

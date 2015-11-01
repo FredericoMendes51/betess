@@ -89,6 +89,14 @@ public class Odd {
         return this.oddUm==(e.getOddUm()) && this.oddX==(e.getOddX()) && this.oddDois==(e.getOddDois()) && this.timestamp.equals(e.getTimestamp());
     }
     
+    public String toString(){
+        StringBuilder s = new StringBuilder();
+        s.append(this.oddUm).append("-").append(this.oddX).append("-").append(this.oddDois);
+        
+        
+        return s.toString();
+    }
+    
     
     
     
