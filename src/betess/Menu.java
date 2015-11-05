@@ -327,8 +327,7 @@ public class Menu {
                 double oddDois = Double.parseDouble(odd2);
                 
                 
-                ca.criaJogo(equipa1, equipa2, oddUm, oddX, oddDois, new Date());
-                
+                ca.criaJogo(equipa1, equipa2, oddUm, oddX, oddDois, new Date(), String email);
                 System.out.println("Jogo inserido com sucesso");
                 
                 menu_to_admin(email);

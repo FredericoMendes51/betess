@@ -316,9 +316,10 @@ public class CasaApostas {
     
     //metodo para adicionar um jogo
     
-    public void criaJogo(String equipa1, String equipa2, double odd1, double oddx, double odd2, Date date){
+    public void criaJogo(String equipa1, String equipa2, double odd1, double oddx, double odd2, Date date, String email){
         
-        Jogo j = new Jogo(this.idJogo, equipa1, equipa2);
+        Jogo j = new Jogo(this.idJogo, equipa1, equipa2, email);
+        this.admins.get(email).getJogosCriados().adicionaJogoCriado(j);
 
         j.adicionaOdds(odd1, oddx, odd2);
         this.jogos.put(idJogo, j);
