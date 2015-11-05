@@ -18,6 +18,7 @@ public class Admin {
     private String password;
     private List<Jogo> jogosCriados;
     private List<Jogo> jogosSeguidos;
+    private List<Notificacao> listaNotificacoes;
     private boolean log;
     
     
@@ -110,6 +111,10 @@ public class Admin {
 
     public void setLog(boolean log) {
         this.log = log;
+    }
+
+    public void adicionaJogoCriado(Jogo j){
+        this.jogosCriados.add(j);
     }
 
     @Override

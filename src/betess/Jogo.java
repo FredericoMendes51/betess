@@ -13,6 +13,7 @@ import java.util.*;
  */
 class Jogo {
     private int idJogo;
+    private String idAdmin;
     private String equipa1;
     private String equipa2;
     private String resultado; //so é preciso alterar depois de fechar o jogo
@@ -26,6 +27,7 @@ class Jogo {
     
     public Jogo(){
         this.idJogo=0;
+        this.idAdmin = null;
         this.equipa1="";
         this.equipa2="";
         this.resultado="";
@@ -35,8 +37,9 @@ class Jogo {
         this.inicioJogo = new Date();
     }
 
-    public Jogo(int idJogo, String equipa1, String equipa2) {
+    public Jogo(int idJogo, String equipa1, String equipa2, String email) {
         this.idJogo = idJogo;
+        this.idAdmin = email;
         this.equipa1 = equipa1;
         this.equipa2 = equipa2;
         this.listaOdds = new ArrayList<>();
@@ -48,6 +51,7 @@ class Jogo {
     
     public Jogo(Jogo j){
         this.idJogo=j.getIdJogo();
+        this.idAdmin = j.getIdAdmin();
         this.equipa1=j.getEquipa1();
         this.equipa2=j.getEquipa2();
         this.listaOdds = j.getListaOdds();
@@ -58,6 +62,10 @@ class Jogo {
 
     public int getIdJogo() {
         return idJogo;
+    }
+
+    public String getIdAdmin(){
+        return idAdmin;
     }
 
     public String getEquipa1() {
@@ -94,6 +102,10 @@ class Jogo {
 
     public void setIdJogo(int idJogo) {
         this.idJogo = idJogo;
+    }
+
+    public void setIdAdmin(String email){
+        this.idAdmin = email;
     }
 
     public void setEquipa1(String equipa1) {
@@ -142,7 +154,7 @@ class Jogo {
         int size = this.listaOdds.size();
         StringBuilder s = new StringBuilder();
         s.append("Jogo : ");
-        s.append(this.idJogo).append(":").append(this.equipa1).append("-").append(this.equipa2).append(":").append(this.listaOdds.get(size-1).getOddUm()).append("-").append(this.listaOdds.get(size-1).getOddX()).append("-").append(this.listaOdds.get(size-1).getOddDois()).append("\n");
+        s.append(this.idJogo).append(":").append(this.idAdmin).append(":").append(this.equipa1).append("-").append(this.equipa2).append(":").append(this.listaOdds.get(size-1).getOddUm()).append("-").append(this.listaOdds.get(size-1).getOddX()).append("-").append(this.listaOdds.get(size-1).getOddDois()).append("\n");
         
         return s.toString();
     }
