@@ -86,13 +86,13 @@ public class CasaApostas {
         
         //Jogos
         
-        criaJogo("Sporting","Braga", 1.32, 4.0, 8.0, new Date(), "admin1");
-        criaJogo("Benfica","Sporting", 3.2, 4.0, 1.5, new Date(), "admin1");
-        criaJogo("Porto","Guimarães", 1.4, 3.5, 5.0, new Date(), "admin1");
-        criaJogo("Porto","Braga", 2.1, 3.2, 4.0, new Date(), "admin1");
-        criaJogo("Benfica","Olhanense", 1.32, 4.0, 5.0, new Date(), "admin1");
-        criaJogo("Prado","Merelim", 4.0, 2.0, 4.0, new Date(), "admin1");
-        criaJogo("Portugal","Sérvia", 1.32, 4.0,  8.0, new Date(), "admin1");
+        criaJogo("Sporting","Braga", 1.32, 4.0, 8.0, new Date(), user1.getEmail());
+        criaJogo("Benfica","Sporting", 3.2, 4.0, 1.5, new Date(),  user1.getEmail());
+//        criaJogo("Porto","Guimarães", 1.4, 3.5, 5.0, new Date(), "admin1");
+//        criaJogo("Porto","Braga", 2.1, 3.2, 4.0, new Date(), "admin1");
+//        criaJogo("Benfica","Olhanense", 1.32, 4.0, 5.0, new Date(), "admin1");
+//        criaJogo("Prado","Merelim", 4.0, 2.0, 4.0, new Date(), "admin1");
+//        criaJogo("Portugal","Sérvia", 1.32, 4.0,  8.0, new Date(), "admin1");
 
     }
 
@@ -263,7 +263,6 @@ public class CasaApostas {
                 aux = j.getJogosCriados();
                 break;
             }
-
         }
 
         return aux;
