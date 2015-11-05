@@ -254,7 +254,21 @@ public class CasaApostas {
         
         return auxAposta;
     }
-    
+
+    //ver todos os jogos criados por um user
+    public List<Jogo> listaJogosCriados(String email){
+        List<Jogo> aux = new ArrayList<>();
+        for(Admin j : this.admins.values()){
+            if(email.equals(j.getUsername())) {
+                aux = j.getJogosCriados();
+                break;
+            }
+
+        }
+
+        return aux;
+    }
+
     //funcao para retirar aposta
     public String retirarAposta(String email, int id_aposta){
         String ret = null;

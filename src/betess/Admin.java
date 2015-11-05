@@ -115,7 +115,10 @@ public class Admin {
 
     public void adicionaJogoCriado(Jogo j){
         this.jogosCriados.add(j);
+        this.jogosSeguidos.add(j);
     }
+
+
 
     @Override
     public Admin clone() {
