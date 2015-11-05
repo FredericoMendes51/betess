@@ -95,8 +95,7 @@ public class CasaApostas {
         criaJogo("Portugal","Sérvia", 1.32, 4.0,  8.0, new Date());
 
     }
-    
-    
+
     
     public int getIdApostas(){
         return this.idApostas;
@@ -216,11 +215,11 @@ public class CasaApostas {
             this.idApostas++;
             
             if(tipoAposta.equals("1"))
-                odd = jogoAux.getOddUmAtual();
+                odd = jogoAux.getListaOdds().get(0).getOddUm();
             else if(tipoAposta.equals("x") || tipoAposta.equals("X"))
-                odd = jogoAux.getOddXAtual();
+                odd = jogoAux.getListaOdds().get(0).getOddX();
             else if(tipoAposta.equals("2"))
-                odd = jogoAux.getOddDoisAtual();
+                odd = jogoAux.getListaOdds().get(0).getOddDois();
             
             Aposta a = new Aposta(idApostas, true, montante, userAux.getEmail(), jogoAux.clone(), tipoAposta, odd);
             userAux.apostar(email, this.idApostas, jogoAux, montante, tipoAposta, odd);
@@ -320,25 +319,21 @@ public class CasaApostas {
     public void criaJogo(String equipa1, String equipa2, double odd1, double oddx, double odd2, Date date){
         
         Jogo j = new Jogo(this.idJogo, equipa1, equipa2);
-        j.setOddUmAtual(odd1);
-        j.setOddXAtual(oddx);
-        j.setOddDoisAtual(odd2);
+
         j.adicionaOdds(odd1, oddx, odd2);
         this.jogos.put(idJogo, j);
         this.idJogo++;
     }
-    
+
     public String editaJogo(int idJogo, Odd odd){
         String res;
         if(this.jogos.get(idJogo)!=null){
             res="O jogo que escolheu não existe";
         }
        this.jogos.get(idJogo).adicionaOdds(odd.getOddUm(), odd.getOddX(), odd.getOddDois());
-       this.jogos.get(idJogo).setOddUmAtual(odd.getOddUm());
-       this.jogos.get(idJogo).setOddXAtual(odd.getOddX());
-       this.jogos.get(idJogo).setOddDoisAtual(odd.getOddDois());
 
        res="Jogo editado com sucesso!!";
+        System.out.println(this.jogos.get(idJogo).toString());
        return res;
     }
     

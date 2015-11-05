@@ -74,7 +74,8 @@ public class Odd {
     public void setTimestamp(Date time){
         this.timestamp = time;
     }
-      public Odd clone() {
+
+    public Odd clone() {
         return new Odd(this);
     } 
     
@@ -91,9 +92,8 @@ public class Odd {
     
     public String toString(){
         StringBuilder s = new StringBuilder();
-        s.append(this.oddUm).append("-").append(this.oddX).append("-").append(this.oddDois);
-        
-        
+        s.append(this.oddUm).append("-").append(this.oddX).append("-").append(this.oddDois).append("-").append(this.timestamp);
+
         return s.toString();
     }
     

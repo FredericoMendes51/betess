@@ -5,9 +5,7 @@
  */
 package betess;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  *
@@ -22,9 +20,6 @@ class Jogo {
     private boolean fechadoParaApostar; //boleano que diz que o jogou ainda tá fechou ou abriu (antes de começar)
     private boolean acabou; //boolean que diz se um jogo ja começou ou acabou
     private Date inicioJogo;
-    private double oddUmAtual;
-    private double oddXAtual;
-    private double oddDoisAtual;
     
     //falta mudar para arrays odd's
     
@@ -38,9 +33,6 @@ class Jogo {
         this.acabou=false;
         this.fechadoParaApostar = false;
         this.inicioJogo = new Date();
-        this.oddUmAtual = 0.0;
-        this.oddXAtual = 0.0;
-        this.oddDoisAtual = 0.0;
     }
 
     public Jogo(int idJogo, String equipa1, String equipa2) {
@@ -52,9 +44,6 @@ class Jogo {
         this.fechadoParaApostar = false;
         this.inicioJogo = new Date();
         this.resultado=null;
-        this.oddUmAtual = 0.0;
-        this.oddXAtual = 0.0;
-        this.oddDoisAtual = 0.0;
     }
     
     public Jogo(Jogo j){
@@ -65,9 +54,6 @@ class Jogo {
         this.resultado=j.getResultado();
         this.fechadoParaApostar = j.getFechadoParaApostar();
         this.inicioJogo = j.getInicioJogo();
-        this.oddUmAtual = j.getOddUmAtual();
-        this.oddXAtual = j.getOddXAtual();
-        this.oddDoisAtual = j.getOddDoisAtual();
     }
 
     public int getIdJogo() {
@@ -105,19 +91,7 @@ class Jogo {
     public Date getInicioJogo(){
         return this.inicioJogo;
     }
-    
-    public double getOddUmAtual(){
-        return this.oddUmAtual;
-    }
-    
-    public double getOddXAtual(){
-        return this.oddXAtual;
-    }
-    
-    public double getOddDoisAtual(){
-        return this.oddDoisAtual;
-    }
-    
+
     public void setIdJogo(int idJogo) {
         this.idJogo = idJogo;
     }
@@ -152,18 +126,7 @@ class Jogo {
     public void setInicioJogo(Date time){
         this.inicioJogo = time;
     }
-    
-     public void setOddUmAtual(double odd){
-        this.oddUmAtual = odd;
-    }
-    
-    public void setOddXAtual(double odd){
-        this.oddXAtual = odd;
-    }
-    
-    public void setOddDoisAtual(double odd){
-        this.oddDoisAtual = odd;
-    }
+
     
     //metodo que adiciona odd's
     public void adicionaOdds(double odd1, double oddx, double odd2){
@@ -173,12 +136,13 @@ class Jogo {
         this.listaOdds.add(newOdd);
     }
 
-    
+
     @Override
     public String toString() {
+        int size = this.listaOdds.size();
         StringBuilder s = new StringBuilder();
         s.append("Jogo : ");
-        s.append(this.idJogo).append(":").append(this.equipa1).append("-").append(this.equipa2).append(":").append(this.oddUmAtual).append("-").append(this.oddXAtual).append("-").append(this.oddDoisAtual).append("\n");
+        s.append(this.idJogo).append(":").append(this.equipa1).append("-").append(this.equipa2).append(":").append(this.listaOdds.get(size-1).getOddUm()).append("-").append(this.listaOdds.get(size-1).getOddX()).append("-").append(this.listaOdds.get(size-1).getOddDois()).append("\n");
         
         return s.toString();
     }
