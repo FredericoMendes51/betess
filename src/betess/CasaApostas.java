@@ -267,6 +267,7 @@ public class CasaApostas {
         }
         return ret;
     }
+
     //metodto para depositar dinheiro
     public String depositarBetCoins(String email,double money){
         String ret = null;
@@ -322,11 +323,9 @@ public class CasaApostas {
         j.setOddUmAtual(odd1);
         j.setOddXAtual(oddx);
         j.setOddDoisAtual(odd2);
-        Odd o = new Odd(odd1, oddx, odd2, date);
-        j.getListaOdds().add(o);
+        j.adicionaOdds(odd1, oddx, odd2);
         this.jogos.put(idJogo, j);
         this.idJogo++;
-        
     }
     
     public String editaJogo(int idJogo, Odd odd){
@@ -334,10 +333,11 @@ public class CasaApostas {
         if(this.jogos.get(idJogo)!=null){
             res="O jogo que escolheu não existe";
         }
-       this.jogos.get(idJogo).getListaOdds().add(odd);
+       this.jogos.get(idJogo).adicionaOdds(odd.getOddUm(), odd.getOddX(), odd.getOddDois());
        this.jogos.get(idJogo).setOddUmAtual(odd.getOddUm());
        this.jogos.get(idJogo).setOddXAtual(odd.getOddX());
        this.jogos.get(idJogo).setOddDoisAtual(odd.getOddDois());
+
        res="Jogo editado com sucesso!!";
        return res;
     }
@@ -351,7 +351,7 @@ public class CasaApostas {
         res = "Jogo removido com sucesso";
         return res;
     }
-    
+
     public List<Jogo> listaJogosDecorrer(){
         List<Jogo> aux = new ArrayList<>();
         for(Jogo j :this.jogos.values()){

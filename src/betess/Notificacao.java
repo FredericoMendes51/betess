@@ -16,6 +16,7 @@ public class Notificacao {
     private String from;
     private String mensagem;
     private Date data;
+    private boolean notificacaoLida;
      
     public Notificacao(){
         this.tipoNotificacao = null;

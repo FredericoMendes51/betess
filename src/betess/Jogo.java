@@ -172,6 +172,7 @@ class Jogo {
         Odd newOdd = new Odd(odd1, oddx, odd2, now);
         this.listaOdds.add(newOdd);
     }
+
     
     @Override
     public String toString() {
