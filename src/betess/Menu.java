@@ -6,7 +6,6 @@
 package betess;
 
 import java.io.IOException;
-import static java.util.Collections.list;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
@@ -327,7 +326,7 @@ public class Menu {
                 double oddDois = Double.parseDouble(odd2);
                 
                 
-                ca.criaJogo(equipa1, equipa2, oddUm, oddX, oddDois, new Date());
+                ca.criaJogo(equipa1, equipa2, oddUm, oddX, oddDois, new Date(), email);
                 
                 System.out.println("Jogo inserido com sucesso");
                 

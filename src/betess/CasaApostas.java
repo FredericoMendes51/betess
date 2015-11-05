@@ -86,13 +86,13 @@ public class CasaApostas {
         
         //Jogos
         
-        criaJogo("Sporting","Braga", 1.32, 4.0, 8.0, new Date());
-        criaJogo("Benfica","Sporting", 3.2, 4.0, 1.5, new Date());
-        criaJogo("Porto","Guimarães", 1.4, 3.5, 5.0, new Date());
-        criaJogo("Porto","Braga", 2.1, 3.2, 4.0, new Date());
-        criaJogo("Benfica","Olhanense", 1.32, 4.0, 5.0, new Date());
-        criaJogo("Prado","Merelim", 4.0, 2.0, 4.0, new Date());
-        criaJogo("Portugal","Sérvia", 1.32, 4.0,  8.0, new Date());
+        criaJogo("Sporting","Braga", 1.32, 4.0, 8.0, new Date(), "admin1");
+        criaJogo("Benfica","Sporting", 3.2, 4.0, 1.5, new Date(), "admin1");
+        criaJogo("Porto","Guimarães", 1.4, 3.5, 5.0, new Date(), "admin1");
+        criaJogo("Porto","Braga", 2.1, 3.2, 4.0, new Date(), "admin1");
+        criaJogo("Benfica","Olhanense", 1.32, 4.0, 5.0, new Date(), "admin1");
+        criaJogo("Prado","Merelim", 4.0, 2.0, 4.0, new Date(), "admin1");
+        criaJogo("Portugal","Sérvia", 1.32, 4.0,  8.0, new Date(), "admin1");
 
     }
 
@@ -316,10 +316,10 @@ public class CasaApostas {
     
     //metodo para adicionar um jogo
     
-    public void criaJogo(String equipa1, String equipa2, double odd1, double oddx, double odd2, Date date){
+    public void criaJogo(String equipa1, String equipa2, double odd1, double oddx, double odd2, Date date, String email){
         
-        Jogo j = new Jogo(this.idJogo, equipa1, equipa2);
-
+        Jogo j = new Jogo(this.idJogo, equipa1, equipa2, email);
+        this.admins.get(email).adicionaJogoCriado(j);
         j.adicionaOdds(odd1, oddx, odd2);
         this.jogos.put(idJogo, j);
         this.idJogo++;
